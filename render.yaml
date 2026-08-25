@@ -1,0 +1,31 @@
+services:
+  - type: web
+    name: ipvideo
+    runtime: docker
+    repo: https://github.com/abdelsm990-ui/ipvideo
+    plan: free
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: CLIENT_URL
+        value: https://ipvideo.onrender.com
+      - key: JWT_SECRET
+        generateValue: true
+      - key: JWT_EXPIRE
+        value: 7d
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_SERVICE_ROLE_KEY
+        sync: false
+      - key: REPLICATE_API_TOKEN
+        sync: false
+      - key: PAYPAL_CLIENT_ID
+        sync: false
+      - key: PAYPAL_CLIENT_SECRET
+        sync: false
+      - key: PAYPAL_PLAN_PRO_ID
+        value: P-05L36682RB3103432NKFXTKY
+      - key: PAYPAL_WEBHOOK_ID
+        sync: false
