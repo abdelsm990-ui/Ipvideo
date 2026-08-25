@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Connexion — Ipvideo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <script src="js/i18n.js"></script>
+</head>
+<body>
+
+  <div class="bg-mesh"></div>
+  <div class="bg-grid"></div>
+
+  <header class="header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">
+        <div class="logo-icon"><i class="fa-solid fa-play"></i></div>
+        <span>Ipvideo</span>
+      </a>
+      <div class="header-actions">
+        <div class="lang-selector">
+          <a href="#" class="lang-btn" data-lang="fr">FR</a>
+          <a href="#" class="lang-btn" data-lang="en">EN</a>
+          <a href="#" class="lang-btn" data-lang="ar">AR</a>
+        </div>
+        <a href="register.html" class="btn btn-primary btn-sm" data-i18n="nav_register">Créer un compte</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="auth-page">
+    <div class="auth-card fade-in">
+      <div class="auth-header">
+        <a href="index.html" class="logo">
+          <div class="logo-icon"><i class="fa-solid fa-play"></i></div>
+          <span>Ipvideo</span>
+        </a>
+        <h1 data-i18n="login_title">Connexion</h1>
+        <p data-i18n="login_subtitle">Accédez à votre tableau de bord</p>
+      </div>
+
+      <form id="loginForm">
+        <div class="form-group">
+          <label class="form-label" for="email" data-i18n="email_label">Adresse email</label>
+          <input type="email" id="email" class="form-input" placeholder="vous@exemple.com" data-i18n-placeholder="email_placeholder" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="password" data-i18n="password_label">Mot de passe</label>
+          <input type="password" id="password" class="form-input" placeholder="••••••••" data-i18n-placeholder="password_placeholder" required>
+        </div>
+
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; font-size:0.8rem;">
+          <label style="display:flex; align-items:center; gap:6px; color:var(--text-secondary); cursor:pointer;">
+            <input type="checkbox" style="accent-color:var(--accent-primary);">
+            <span data-i18n="remember_me">Se souvenir de moi</span>
+          </label>
+          <a href="#" style="color:var(--accent-primary);" data-i18n="forgot_password">Mot de passe oublié ?</a>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block"><i class="fa-solid fa-arrow-right-to-bracket"></i> <span data-i18n="login_button">Se connecter</span></button>
+      </form>
+
+      <div class="divider" data-i18n="or">ou</div>
+
+      <button class="btn btn-secondary btn-block" style="margin-bottom:12px;">
+        <i class="fa-brands fa-google"></i> <span data-i18n="continue_google">Continuer avec Google</span>
+      </button>
+
+      <div class="form-footer">
+        <span data-i18n="no_account">Pas encore de compte ?</span> <a href="register.html" data-i18n="create_account">Créer un compte</a>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script>
+    document.getElementById('loginForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const btn = this.querySelector('button[type="submit"]');
+      btn.disabled = true;
+      btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> ' + (typeof t === 'function' ? t('login_loading') : 'Connexion...');
+
+      try {
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        await loginUser(email, password);
+
+        // Check if there was an intended plan to subscribe to
+        const intendedPlan = localStorage.getItem('ipvideo_intended_plan');
+        const urlParams = new URLSearchParams(window.location.search);
+        const redirect = urlParams.get('redirect');
+
+        localStorage.removeItem('ipvideo_intended_plan');
+
+        if (intendedPlan) {
+          window.location.href = 'pricing.html';
+        } else if (redirect) {
+          window.location.href = redirect;
+        } else {
+          window.location.href = 'dashboard.html';
+        }
+      } catch (err) {
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fa-solid fa-arrow-right-to-bracket"></i> ' + (typeof t === 'function' ? t('login_button') : 'Se connecter');
+        alert(err.data?.message || err.message || (typeof t === 'function' ? t('login_error') : 'Email ou mot de passe incorrect'));
+      }
+    });
+  </script>
+</body>
+</html>

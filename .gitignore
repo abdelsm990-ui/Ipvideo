@@ -1,0 +1,26 @@
+# Dependencies
+server/node_modules/
+node_modules/
+
+# Environment
+.env
+.env.local
+.env.production
+
+# Build
+server/dist/
+dist/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Docker
+*.pid
+HOSTINGER_ENV.txt
+HOSTINGER_DEPLOY.md
+server/.env

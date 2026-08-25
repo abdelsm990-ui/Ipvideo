@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inscription — Ipvideo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <script src="js/i18n.js"></script>
+</head>
+<body>
+
+  <div class="bg-mesh"></div>
+  <div class="bg-grid"></div>
+
+  <header class="header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">
+        <div class="logo-icon"><i class="fa-solid fa-play"></i></div>
+        <span>Ipvideo</span>
+      </a>
+      <div class="header-actions">
+        <div class="lang-selector">
+          <a href="#" class="lang-btn" data-lang="fr">FR</a>
+          <a href="#" class="lang-btn" data-lang="en">EN</a>
+          <a href="#" class="lang-btn" data-lang="ar">AR</a>
+        </div>
+        <a href="login.html" class="btn btn-ghost btn-sm" data-i18n="nav_login">Connexion</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="auth-page">
+    <div class="auth-card fade-in" style="max-width:480px;">
+      <div class="auth-header">
+        <a href="index.html" class="logo">
+          <div class="logo-icon"><i class="fa-solid fa-play"></i></div>
+          <span>Ipvideo</span>
+        </a>
+        <h1 data-i18n="register_title">Créer un compte</h1>
+        <p data-i18n="register_subtitle">Commencez votre essai gratuit de 3 jours</p>
+      </div>
+
+      <div id="planBanner" style="display:none; padding:12px 16px; background:rgba(99,102,241,0.15); border:1px solid rgba(99,102,241,0.3); border-radius:var(--radius-md); margin-bottom:20px; font-size:0.85rem;">
+        <i class="fa-solid fa-crown" style="color:var(--accent-primary); margin-right:6px;"></i>
+        <span id="planText">Vous avez sélectionné le plan Pro</span>
+      </div>
+
+      <form id="registerForm">
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+          <div class="form-group">
+            <label class="form-label" for="firstName" data-i18n="firstname_label">Prénom</label>
+            <input type="text" id="firstName" class="form-input" placeholder="Jean" data-i18n-placeholder="firstname_placeholder" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="lastName" data-i18n="lastname_label">Nom</label>
+            <input type="text" id="lastName" class="form-input" placeholder="Dupont" data-i18n-placeholder="lastname_placeholder" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="email" data-i18n="email_label">Adresse email</label>
+          <input type="email" id="email" class="form-input" placeholder="vous@exemple.com" data-i18n-placeholder="email_placeholder" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="password" data-i18n="password_label">Mot de passe</label>
+          <input type="password" id="password" class="form-input" placeholder="8 caractères minimum" data-i18n-placeholder="password_placeholder" minlength="6" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="plan" data-i18n="plan_label">Plan</label>
+          <select id="plan" class="form-input select-input">
+            <option value="free" data-i18n="plan_free">Découverte (3 jours gratuits)</option>
+            <option value="pro" data-i18n="plan_pro">Pro — 25$/mois</option>
+          </select>
+        </div>
+
+        <label style="display:flex; align-items:flex-start; gap:10px; font-size:0.8rem; color:var(--text-secondary); margin-bottom:20px; cursor:pointer;">
+          <input type="checkbox" id="terms" required style="margin-top:3px; accent-color:var(--accent-primary);">
+          <span><span data-i18n="accept_terms">J'accepte les</span> <a href="#" style="color:var(--accent-primary);" data-i18n="terms_of_service">conditions d'utilisation</a> <span data-i18n="and">et la</span> <a href="#" style="color:var(--accent-primary);" data-i18n="privacy_policy">politique de confidentialité</a>.</span>
+        </label>
+
+        <button type="submit" class="btn btn-primary btn-block btn-glow"><i class="fa-solid fa-rocket"></i> <span data-i18n="register_button">Créer mon compte</span></button>
+      </form>
+
+      <div class="divider" data-i18n="or">ou</div>
+
+      <button class="btn btn-secondary btn-block" style="margin-bottom:12px;">
+        <i class="fa-brands fa-google"></i> <span data-i18n="register_google">S'inscrire avec Google</span>
+      </button>
+
+      <div class="form-footer">
+        <span data-i18n="already_account">Déjà un compte ?</span> <a href="login.html" data-i18n="login_button">Se connecter</a>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const planParam = urlParams.get('plan');
+    if (planParam) {
+      document.getElementById('plan').value = planParam;
+      document.getElementById('planBanner').style.display = 'block';
+      const planLabels = { pro: 'Pro — 25$/mois' };
+      document.getElementById('planText').textContent = (typeof t === 'function' ? t('selected_plan') : 'Vous avez sélectionné le plan ') + (planLabels[planParam] || planParam);
+    }
+
+    document.getElementById('registerForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const btn = this.querySelector('button[type="submit"]');
+      btn.disabled = true;
+      btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> ' + (typeof t === 'function' ? t('register_loading') : 'Création...');
+
+      try {
+        const userData = {
+          firstName: document.getElementById('firstName').value,
+          lastName: document.getElementById('lastName').value,
+          email: document.getElementById('email').value,
+          password: document.getElementById('password').value,
+        };
+        await registerUser(userData);
+        window.location.href = 'dashboard.html?welcome=1';
+      } catch (err) {
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fa-solid fa-rocket"></i> ' + (typeof t === 'function' ? t('register_button') : 'Créer mon compte');
+        alert(err.data?.message || err.message || (typeof t === 'function' ? t('register_error') : 'Erreur lors de la création du compte'));
+      }
+    });
+  </script>
+</body>
+</html>

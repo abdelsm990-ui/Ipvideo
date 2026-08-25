@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Comment ça marche — Ipvideo</title>
+  <meta name="description" content="Découvrez comment fonctionne le système de points d'Ipvideo. 1 000 points = environ 25 vidéos de 30 secondes. Transparent et simple.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <style>
+    .points-explain {
+      background: var(--bg-card);
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+      margin-bottom: 40px;
+    }
+    .points-explain h3 {
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+      color: var(--accent-primary);
+    }
+    .points-explain p {
+      color: var(--text-secondary);
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+    .cost-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 24px 0;
+    }
+    .cost-table th, .cost-table td {
+      padding: 16px;
+      text-align: left;
+      border-bottom: 1px solid var(--border-glass);
+    }
+    .cost-table th {
+      color: var(--text-muted);
+      font-weight: 600;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .cost-table td {
+      color: var(--text-primary);
+    }
+    .cost-table tr:last-child td {
+      border-bottom: none;
+    }
+    .highlight-box {
+      background: rgba(99,102,241,0.1);
+      border: 1px solid rgba(99,102,241,0.3);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      margin: 24px 0;
+    }
+    .highlight-box h4 {
+      color: var(--accent-primary);
+      margin-bottom: 12px;
+      font-size: 1.1rem;
+    }
+    .highlight-box p {
+      color: var(--text-secondary);
+      margin: 0;
+    }
+    .step-card {
+      display: flex;
+      gap: 24px;
+      padding: 32px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-lg);
+      margin-bottom: 24px;
+    }
+    .step-number {
+      width: 48px;
+      height: 48px;
+      background: var(--accent-primary);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 1.25rem;
+      color: white;
+      flex-shrink: 0;
+    }
+    .step-content h3 {
+      font-size: 1.25rem;
+      margin-bottom: 8px;
+    }
+    .step-content p {
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+  </style>
+  <script src="js/i18n.js"></script>
+</head>
+<body>
+
+  <div class="bg-mesh"></div>
+  <div class="bg-grid"></div>
+
+  <header class="header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">
+        <div class="logo-icon"><i class="fa-solid fa-play"></i></div>
+        <span>Ipvideo</span>
+      </a>
+      <nav class="nav-desktop">
+        <a href="index.html#features" class="nav-link" data-i18n="nav_features">Fonctionnalités</a>
+        <a href="how-it-works.html" class="nav-link active" data-i18n="nav_how_it_works">Comment ça marche</a>
+        <a href="pricing.html" class="nav-link" data-i18n="nav_pricing">Tarifs</a>
+        <a href="index.html#faq" class="nav-link" data-i18n="nav_faq">FAQ</a>
+      </nav>
+      <div class="header-actions">
+        <div class="lang-selector">
+          <a href="#" class="lang-btn" data-lang="fr">FR</a>
+          <a href="#" class="lang-btn" data-lang="en">EN</a>
+          <a href="#" class="lang-btn" data-lang="ar">AR</a>
+        </div>
+        <a href="login.html" class="btn btn-ghost btn-sm" data-i18n="nav_login">Connexion</a>
+        <a href="register.html" class="btn btn-primary btn-sm" data-i18n="nav_register">Commencer</a>
+      </div>
+      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="mobile-nav" id="mobileNav">
+      <a href="index.html#features" class="nav-link" data-i18n="nav_features">Fonctionnalités</a>
+      <a href="how-it-works.html" class="nav-link active" data-i18n="nav_how_it_works">Comment ça marche</a>
+      <a href="pricing.html" class="nav-link" data-i18n="nav_pricing">Tarifs</a>
+      <a href="index.html#faq" class="nav-link" data-i18n="nav_faq">FAQ</a>
+      <a href="login.html" class="nav-link" data-i18n="nav_login">Connexion</a>
+      <a href="register.html" class="btn btn-primary" data-i18n="nav_register">Commencer</a>
+    </div>
+  </header>
+
+  <section class="hero" style="padding-bottom:40px;">
+    <div class="container" style="text-align:center;">
+      <div class="hero-badge" style="margin:0 auto 24px;">
+        <i class="fa-solid fa-circle-question"></i>
+        <span data-i18n="how_it_works_badge">Comment ça marche</span>
+      </div>
+      <h1 class="hero-title" style="font-size:2.8rem;">
+        <span data-i18n="how_it_works_title">Simple, transparent,</span> <span class="gradient-text" data-i18n="no_surprises">sans surprises</span>
+      </h1>
+      <p class="hero-description" style="margin:0 auto 40px;" data-i18n="how_it_works_subtitle">
+        Chez Ipvideo, pas d'abonnements avec engagement ni de frais cachés. Vous achetez des points, vous les utilisez quand vous voulez.
+      </p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0;">
+    <div class="container">
+
+      <!-- Le système de points -->
+      <div class="points-explain">
+        <h3><i class="fa-solid fa-coins"></i> <span data-i18n="points_system_title">Le système de points</span></h3>
+        <p data-i18n="points_system_desc">
+          Au lieu de vous vendre un "accès illimité" qui ne l'est pas, nous avons choisi la transparence :
+          <strong data-i18n="points_system">un système de points</strong>. Chaque vidéo générée coûte un certain nombre de points selon sa durée et la qualité choisie.
+        </p>
+
+        <table class="cost-table">
+          <thead>
+            <tr>
+              <th data-i18n="table_video_type">Type de vidéo</th>
+              <th data-i18n="table_duration">Durée</th>
+              <th data-i18n="table_cost">Coût en points</th>
+              <th data-i18n="table_model">Modèle IA utilisé</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Standard</strong> (Zeroscope)</td>
+              <td>5 <span data-i18n="seconds">secondes</span></td>
+              <td><span style="color:var(--accent-primary); font-weight:700;">7 <span data-i18n="points">points</span></span></td>
+              <td data-i18n="zeroscope_desc">Zeroscope v2 XL — rapide et économique</td>
+            </tr>
+            <tr>
+              <td><strong>Standard</strong> (Zeroscope)</td>
+              <td>15 <span data-i18n="seconds">secondes</span></td>
+              <td><span style="color:var(--accent-primary); font-weight:700;">20 <span data-i18n="points">points</span></span></td>
+              <td data-i18n="zeroscope_desc">Zeroscope v2 XL — rapide et économique</td>
+            </tr>
+            <tr>
+              <td><strong>Standard</strong> (Zeroscope)</td>
+              <td>30 <span data-i18n="seconds">secondes</span></td>
+              <td><span style="color:var(--accent-primary); font-weight:700;">40 <span data-i18n="points">points</span></span></td>
+              <td data-i18n="zeroscope_desc">Zeroscope v2 XL — rapide et économique</td>
+            </tr>
+            <tr>
+              <td><strong>Premium</strong> (Luma)</td>
+              <td>30 <span data-i18n="seconds">secondes</span></td>
+              <td><span style="color:var(--accent-secondary); font-weight:700;">120 <span data-i18n="points">points</span></span></td>
+              <td data-i18n="luma_desc">Luma Dream Machine — haute qualité cinématique</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="highlight-box">
+          <h4><i class="fa-solid fa-calculator"></i> <span data-i18n="example_title">Exemple concret</span></h4>
+          <p data-i18n="example_desc">
+            Avec le plan Pro à 25$, vous recevez 1 000 points par mois.
+            Cela vous permet de générer environ 25 vidéos de 30 secondes en qualité Standard,
+            ou environ 8 vidéos de 30 secondes en qualité Premium.
+          </p>
+        </div>
+
+        <div class="highlight-box" style="background:rgba(16,185,129,0.1); border-color:rgba(16,185,129,0.3);">
+          <h4 style="color:var(--success);"><i class="fa-solid fa-gift"></i> <span data-i18n="free_trial">Essai gratuit</span></h4>
+          <p data-i18n="free_trial_desc">
+            À l'inscription, vous recevez 120 points gratuits sans engagement.
+            Cela correspond à environ 3 vidéos de 30 secondes pour tester la plateforme.
+          </p>
+        </div>
+      </div>
+
+      <!-- Les étapes -->
+      <h2 style="text-align:center; margin-bottom:40px; font-size:2rem;" data-i18n="steps_title">Les étapes en 3 clics</h2>
+
+      <div class="step-card">
+        <div class="step-number">1</div>
+        <div class="step-content">
+          <h3 data-i18n="step1_title">Choisissez votre formule</h3>
+          <p data-i18n="step1_desc">
+            Inscrivez-vous gratuitement et recevez 120 points pour tester.
+            Si vous avez besoin de plus, souscrivez au plan Pro (25$ = 1 000 points) via PayPal.
+          </p>
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-number">2</div>
+        <div class="step-content">
+          <h3 data-i18n="step2_title">Décrivez votre vidéo</h3>
+          <p data-i18n="step2_desc">
+            Écrivez ce que vous voulez voir dans votre vidéo (ex: "Un drone survolant une plage tropicale").
+            Choisissez la durée, le style visuel, le format et la
+            qualité du modèle IA (Standard ou Premium). Le coût en points s'affiche en temps réel.
+          </p>
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-number">3</div>
+        <div class="step-content">
+          <h3 data-i18n="step3_title">Téléchargez et partagez</h3>
+          <p>
+            L'IA génère votre vidéo en quelques minutes. Vous pouvez la prévisualiser,
+            la télécharger en haute qualité et l'utiliser librement pour vos réseaux sociaux,
+            vos publicités ou vos présentations.
+          </p data-i18n="step3_desc">
+        </div>
+      </div>
+
+      <!-- FAQ rapide -->
+      <div class="points-explain" style="margin-top:40px;">
+        <h3><i class="fa-solid fa-circle-question"></i> <span data-i18n="faq_title">Questions fréquentes</span></h3>
+
+        <h4 style="margin-top:24px; margin-bottom:8px; color:var(--text-primary);" data-i18n="faq_expire_question">Que se passe-t-il si mes points expirent ?</h4>
+        <p style="margin-bottom:16px;">
+          Vos points sont valables tant que votre abonnement est actif.
+          Si vous annulez, vous conservez vos points jusqu'à la fin de la période payée.
+        </p>
+
+        <h4 style="margin-top:24px; margin-bottom:8px; color:var(--text-primary);" data-i18n="faq_buy_points_question">Puis-je acheter des points en plus ?</h4>
+        <p style="margin-bottom:16px;">
+          Oui ! Vous pouvez souscrire à nouveau au même plan ou passer au plan supérieur à tout moment.
+          Les points s'ajoutent à votre solde existant.
+        </p>
+
+        <h4 style="margin-top:24px; margin-bottom:8px; color:var(--text-primary);" data-i18n="faq_fail_question">Et si la génération échoue ?</h4>
+        <p style="margin-bottom:16px;">
+          Si l'IA ne parvient pas à générer votre vidéo, vos points sont automatiquement remboursés
+          sur votre compte. Vous ne payez que ce qui fonctionne.
+        </p>
+
+        <h4 style="margin-top:24px; margin-bottom:8px; color:var(--text-primary);" data-i18n="faq_difference_question">Quelle est la différence entre Standard et Premium ?</h4>
+        <p style="margin-bottom:16px;">
+          Le modèle Standard (Zeroscope) est rapide et économique, idéal pour les vidéos simples.
+          Le modèle Premium (Luma Dream Machine) offre une qualité cinématique supérieure
+          avec plus de détails et de réalisme, mais coûte 3 fois plus de points.
+        </p>
+      </div>
+
+      <!-- CTA -->
+      <div style="text-align:center; margin-top:60px; padding:60px 40px; background:var(--bg-card); border:1px solid var(--border-glass); border-radius:var(--radius-lg);">
+        <h2 style="font-size:2rem; margin-bottom:16px;" data-i18n="cta_ready">Prêt à créer votre première vidéo ?</h2>
+        <p style="color:var(--text-secondary); margin-bottom:32px; max-width:500px; margin-left:auto; margin-right:auto;">
+          Inscrivez-vous gratuitement avec 120 points de bienvenue. Aucune carte bancaire requise.
+        </p>
+        <a href="register.html" class="btn btn-primary btn-lg" style="margin-right:12px;">
+          <i class="fa-solid fa-rocket"></i> <span data-i18n="start_free">Commencer gratuitement</span>
+        </a>
+        <a href="pricing.html" class="btn btn-secondary btn-lg" data-i18n="see_pricing">
+          Voir les tarifs
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="logo">
+            <div class="logo-icon"><i class="fa-solid fa-play"></i></div>
+            <span>Ipvideo</span>
+          </a>
+          <p data-i18n="footer_tagline">La plateforme de génération vidéo par IA pour créateurs, marketers et entreprises.</p>
+        </div>
+        <div>
+          <h4 class="footer-title" data-i18n="footer_product">Produit</h4>
+          <ul class="footer-links">
+            <li><a href="index.html#features" class="footer-link" data-i18n="nav_features">Fonctionnalités</a></li>
+            <li><a href="pricing.html" class="footer-link" data-i18n="nav_pricing">Tarifs</a></li>
+            <li><a href="generate.html" class="footer-link" data-i18n="nav_generate">Générer</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-title" data-i18n="footer_resources">Ressources</h4>
+          <ul class="footer-links">
+            <li><a href="how-it-works.html" class="footer-link" data-i18n="nav_how_it_works">Comment ça marche</a></li>
+            <li><a href="#" class="footer-link" data-i18n="documentation">Documentation</a></li>
+            <li><a href="#" class="footer-link" data-i18n="blog">Blog</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-title" data-i18n="footer_company">Entreprise</h4>
+          <ul class="footer-links">
+            <li><a href="#" class="footer-link" data-i18n="about">À propos</a></li>
+            <li><a href="#" class="footer-link" data-i18n="contact">Contact</a></li>
+            <li><a href="#" class="footer-link" data-i18n="legal">Mentions légales</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Ipvideo. <span data-i18n="all_rights_reserved">Tous droits réservés.</span></p>
+        <div class="footer-socials">
+          <a href="#" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+          <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
+
+
+

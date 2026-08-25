@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tarifs — Ipvideo</title>
+  <meta name="description" content="Choisissez votre plan Ipvideo. Essai gratuit de 3 jours avec 120 points, puis 25$/mois pour 1 000 points (~25 vidéos de 30s) en 4K.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <script src="js/i18n.js"></script>
+</head>
+<body>
+
+  <div class="bg-mesh"></div>
+  <div class="bg-grid"></div>
+
+  <header class="header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">
+        <div class="logo-icon"><i class="fa-solid fa-play"></i></div>
+        <span>Ipvideo</span>
+      </a>
+      <nav class="nav-desktop">
+        <a href="index.html#features" class="nav-link" data-i18n="nav_features">Fonctionnalités</a>
+        <a href="index.html#how-it-works" class="nav-link" data-i18n="nav_how_it_works">Comment ça marche</a>
+        <a href="pricing.html" class="nav-link active" data-i18n="nav_pricing">Tarifs</a>
+        <a href="index.html#faq" class="nav-link" data-i18n="nav_faq">FAQ</a>
+      </nav>
+      <div class="header-actions">
+        <div class="lang-selector">
+          <a href="#" class="lang-btn" data-lang="fr">FR</a>
+          <a href="#" class="lang-btn" data-lang="en">EN</a>
+          <a href="#" class="lang-btn" data-lang="ar">AR</a>
+        </div>
+        <a href="login.html" class="btn btn-ghost btn-sm" data-i18n="nav_login">Connexion</a>
+        <a href="register.html" class="btn btn-primary btn-sm" data-i18n="nav_register">Commencer</a>
+      </div>
+      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="mobile-nav" id="mobileNav">
+      <a href="index.html#features" class="nav-link" data-i18n="nav_features">Fonctionnalités</a>
+      <a href="index.html#how-it-works" class="nav-link" data-i18n="nav_how_it_works">Comment ça marche</a>
+      <a href="pricing.html" class="nav-link active" data-i18n="nav_pricing">Tarifs</a>
+      <a href="index.html#faq" class="nav-link" data-i18n="nav_faq">FAQ</a>
+      <a href="login.html" class="nav-link" data-i18n="nav_login">Connexion</a>
+      <a href="register.html" class="btn btn-primary" data-i18n="nav_register">Commencer</a>
+    </div>
+  </header>
+
+  <section class="hero" style="padding-bottom:40px;">
+    <div class="container" style="text-align:center;">
+      <div class="hero-badge" style="margin:0 auto 24px;">
+        <i class="fa-solid fa-tag"></i>
+        <span data-i18n="pricing_badge">Tarifs transparents</span>
+      </div>
+      <h1 class="hero-title" style="font-size:2.8rem;">
+        <span data-i18n="pricing_title">Choisissez votre</span> <span class="gradient-text" data-i18n="plan">plan</span>
+      </h1>
+      <p class="hero-description" style="margin:0 auto 40px;" data-i18n="pricing_subtitle">
+        Commencez gratuitement avec 120 points, puis débloquez tout le potentiel pour 25$/mois = 1 000 points (~25 vidéos de 30s).
+      </p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0;">
+    <div class="container">
+      <div class="pricing-grid fade-in">
+        <div class="pricing-card">
+          <div class="pricing-name" data-i18n="plan_discovery">Découverte</div>
+          <p class="pricing-desc" data-i18n="plan_discovery_desc">Pour tester la plateforme</p>
+          <div class="pricing-price">
+            <span class="price-value"><span class="price-currency">$</span>0</span>
+            <span class="price-period">/ <span data-i18n="trial_3_days">essai 3 jours</span></span>
+          </div>
+          <ul class="pricing-features">
+            <li class="pricing-feature"><i class="fa-solid fa-check"></i> <span data-i18n="feature_120_points">120 points offerts (3 vidéos)</span></li>
+            <li class="pricing-feature"><i class="fa-solid fa-check"></i> <span data-i18n="feature_720p">Qualité 720p</span></li>
+            <li class="pricing-feature"><i class="fa-solid fa-check"></i> <span data-i18n="feature_basic_templates">Templates basiques</span></li>
+            <li class="pricing-feature"><i class="fa-solid fa-check"></i> <span data-i18n="feature_watermark">Watermark Ipvideo</span></li>
+            <li class="pricing-feature disabled"><i class="fa-solid fa-xmark"></i> <span data-i18n="feature_ai_voice">Voix IA</span></li>
+            <li class="pricing-feature disabled"><i class="fa-solid fa-xmark"></i> <span data-i18n="feature_4k_export">Export 4K</span></li>
+            <li class="pricing-feature disabled"><i class="fa-solid fa-xmark"></i> <span data-i18n="feature_support">Support</span></li>
+          </ul>
+          <a href="register.html" class="btn btn-secondary btn-block" data-i18n="try_free">Essayer gratuitement</a>
+        </div>
+
+        <div class="pricing-card popular">
+          <div class="popular-badge" data-i18n="most_popular">Plus populaire</div>
+          <div class="pricing-name">Pro</div>
+          <p class="pricing-desc" data-i18n="plan_pro_desc">Pour créateurs & professionnels</p>
+          <div class="pricing-price">
+            <span class="price-value"><span class="price-currency">$</span>25</span>
+            <span class="price-period">/ <span data-i18n="per_month">mois</span></span>
+          </div>
+          <ul class="pricing-features">
+            <li class="pricing-feature"><i class="fa-solid fa-check"></i> <strong>1 000 <span data-i18n="points_per_month">points/mois</span></strong> (~25 <span data-i18n="videos_30s">vidéos 30s</span>)</li>
+            <li class="pricing-feature"><i class="fa-solid fa-check"></i> <span data-i18n="feature_4k">Qualité 4K Ultra HD</span></li>
+            <li class="pricing-feature"><i class="fa-solid fa-check"></i> <span data-i18n="feature_premium_templates">Tous les templates premium</span></li>
+            <li class="pricing-feature"><i class="fa-solid fa-check"></i> <span data-i18n="feature_ai_voice_avatar">Voix & avatars IA (50/mois)</span></li>
+            <li class="pricing-feature"><i class="fa-solid fa-check"></i> <span data-i18n="feature_subtitles">Sous-titres auto 30+ langues</span></li>
+            <li class="pricing-feature"><i class="fa-solid fa-check"></i> <span data-i18n="feature_music">Musique IA incluse</span></li>
+            <li class="pricing-feature"><i class="fa-solid fa-check"></i> <span data-i18n="feature_no_watermark">Sans watermark</span></li>
+            <li class="pricing-feature"><i class="fa-solid fa-check"></i> <span data-i18n="feature_priority_support">Support prioritaire 24/7</span></li>
+          </ul>
+          <button class="btn btn-primary btn-block" onclick="subscribePayPal('pro', this)">
+            <i class="fa-brands fa-paypal"></i> <span data-i18n="subscribe_paypal">S'abonner avec PayPal</span>
+          </button>
+        </div>
+
+        <!-- Plan Entreprise supprimé - uniquement Pro disponible -->
+      </div>
+
+      <div style="text-align:center; margin-top:60px; padding:40px; background:var(--bg-card); border:1px solid var(--border-glass); border-radius:var(--radius-lg);">
+        <h3 style="font-size:1.25rem; margin-bottom:12px;" data-i18n="try_now_title">🎁 Essayez gratuitement dès maintenant</h3>
+        <p style="color:var(--text-secondary); margin-bottom:24px;"><span data-i18n="try_now_desc">Inscrivez-vous et recevez</span> <strong data-i18n="120_points_free">120 points offerts</strong> <span data-i18n="no_commitment">sans engagement. Testez la génération vidéo IA avant de souscrire au plan Pro.</span></p>
+        <a href="register.html" class="btn btn-primary"><i class="fa-solid fa-rocket"></i> <span data-i18n="start_free">Commencer gratuitement</span></a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="logo">
+            <div class="logo-icon"><i class="fa-solid fa-play"></i></div>
+            <span>Ipvideo</span>
+          </a>
+          <p data-i18n="footer_tagline">La plateforme de génération vidéo par IA pour créateurs, marketers et entreprises.</p>
+        </div>
+        <div>
+          <h4 class="footer-title" data-i18n="footer_product">Produit</h4>
+          <ul class="footer-links">
+            <li><a href="index.html#features" class="footer-link" data-i18n="nav_features">Fonctionnalités</a></li>
+            <li><a href="pricing.html" class="footer-link" data-i18n="nav_pricing">Tarifs</a></li>
+            <li><a href="generate.html" class="footer-link" data-i18n="nav_generate">Générer</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-title" data-i18n="footer_resources">Ressources</h4>
+          <ul class="footer-links">
+            <li><a href="#" class="footer-link" data-i18n="documentation">Documentation</a></li>
+            <li><a href="#" class="footer-link" data-i18n="tutorials">Tutoriels</a></li>
+            <li><a href="#" class="footer-link" data-i18n="blog">Blog</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-title" data-i18n="footer_company">Entreprise</h4>
+          <ul class="footer-links">
+            <li><a href="#" class="footer-link" data-i18n="about">À propos</a></li>
+            <li><a href="#" class="footer-link" data-i18n="contact">Contact</a></li>
+            <li><a href="#" class="footer-link" data-i18n="legal">Mentions légales</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Ipvideo. <span data-i18n="all_rights_reserved">Tous droits réservés.</span></p>
+        <div class="footer-socials">
+          <a href="#" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+          <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    async function subscribePayPal(plan, btn) {
+      // Check if user is logged in
+      const token = localStorage.getItem('ipvideo_token');
+      if (!token) {
+        // Save intended plan and redirect to login
+        localStorage.setItem('ipvideo_intended_plan', plan);
+        window.location.href = 'login.html?redirect=pricing.html';
+        return;
+      }
+
+      btn.disabled = true;
+      btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> ' + (typeof t === 'function' ? t('redirecting_paypal') : 'Redirection PayPal...');
+
+      try {
+        // Try subscription first, fallback to order
+        const subRes = await paymentAPI.createPayPalSubscription(plan);
+        if (subRes.success && subRes.approvalUrl) {
+          window.location.href = subRes.approvalUrl;
+          return;
+        }
+      } catch (subErr) {
+        console.log('Subscription not available, trying one-time order:', subErr);
+      }
+
+      try {
+        const orderRes = await paymentAPI.createPayPalOrder(plan);
+        if (orderRes.success && orderRes.approvalUrl) {
+          window.location.href = orderRes.approvalUrl;
+          return;
+        }
+      } catch (orderErr) {
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fa-brands fa-paypal"></i> ' + (typeof t === 'function' ? t('subscribe_paypal') : 'S\'abonner avec PayPal');
+        alert(orderErr.data?.message || (typeof t === 'function' ? t('paypal_error') : 'Erreur lors de la création du paiement PayPal. Veuillez réessayer.'));
+      }
+    }
+  </script>
+</body>
+</html>

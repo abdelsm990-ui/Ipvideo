@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ipvideo — Générez des vidéos professionnelles avec l'IA</title>
+  <meta name="description" content="Ipvideo est la plateforme de génération vidéo par IA. Créez des vidéos professionnelles en quelques clics. Abonnement à 25$/mois.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <script src="js/i18n.js"></script>
+</head>
+<body>
+
+  <!-- Background Effects -->
+  <div class="bg-mesh"></div>
+  <div class="bg-grid"></div>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">
+        <div class="logo-icon"><i class="fa-solid fa-play"></i></div>
+        <span>Ipvideo</span>
+      </a>
+
+      <nav class="nav-desktop">
+        <a href="index.html#features" class="nav-link" data-i18n="nav_features">Fonctionnalités</a>
+        <a href="how-it-works.html" class="nav-link" data-i18n="nav_how_it_works">Comment ça marche</a>
+        <a href="pricing.html" class="nav-link" data-i18n="nav_pricing">Tarifs</a>
+        <a href="index.html#faq" class="nav-link" data-i18n="nav_faq">FAQ</a>
+      </nav>
+
+      <div class="header-actions">
+        <div class="lang-selector">
+          <a href="#" class="lang-btn" data-lang="fr">FR</a>
+          <a href="#" class="lang-btn" data-lang="en">EN</a>
+          <a href="#" class="lang-btn" data-lang="ar">AR</a>
+        </div>
+        <a href="login.html" class="btn btn-ghost btn-sm" data-i18n="nav_login">Connexion</a>
+        <a href="register.html" class="btn btn-primary btn-sm" data-i18n="nav_register">Commencer</a>
+      </div>
+
+      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+
+    <div class="mobile-nav" id="mobileNav">
+      <a href="index.html#features" class="nav-link" data-i18n="nav_features">Fonctionnalités</a>
+      <a href="index.html#how-it-works" class="nav-link" data-i18n="nav_how_it_works">Comment ça marche</a>
+      <a href="pricing.html" class="nav-link" data-i18n="nav_pricing">Tarifs</a>
+      <a href="index.html#faq" class="nav-link" data-i18n="nav_faq">FAQ</a>
+      <a href="login.html" class="nav-link" data-i18n="nav_login">Connexion</a>
+      <a href="register.html" class="btn btn-primary" data-i18n="nav_register">Commencer</a>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container hero-inner">
+      <div class="hero-content fade-in">
+        <div class="hero-badge" data-i18n="hero_badge">
+          <i class="fa-solid fa-sparkles"></i>
+          Propulsé par l'Intelligence Artificielle
+        </div>
+        <h1 class="hero-title">
+          Créez des vidéos<br>
+          <span class="gradient-text">professionnelles</span> en secondes
+        </h1>
+        <p class="hero-description" data-i18n="hero_desc">
+          Ipvideo transforme vos idées en vidéos captivantes grâce à l'IA.
+          Plus besoin de compétences techniques — décrivez, générez, publiez.
+        </p>
+        <div class="hero-actions">
+          <a href="register.html" class="btn btn-primary btn-lg btn-glow">
+            <i class="fa-solid fa-wand-magic-sparkles"></i>
+            <span data-i18n="hero_cta_try">Essai gratuit</span>
+          </a>
+          <a href="index.html#how-it-works" class="btn btn-secondary btn-lg">
+            <i class="fa-solid fa-circle-play"></i>
+            <span data-i18n="hero_cta_demo">Voir la démo</span>
+          </a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat-item">
+            <span class="stat-value gradient-text">50K+</span>
+            <span class="stat-label" data-i18n="stat_videos">Vidéos créées</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-value gradient-text">12K+</span>
+            <span class="stat-label" data-i18n="stat_users">Utilisateurs</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-value gradient-text">4.9</span>
+            <span class="stat-label" data-i18n="stat_rating">Note moyenne</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-visual fade-in delay-2">
+        <div class="hero-video-card">
+          <div class="video-particles">
+            <div class="particle" style="top:20%;left:15%;animation-delay:0s;"></div>
+            <div class="particle" style="top:60%;left:70%;animation-delay:1s;"></div>
+            <div class="particle" style="top:40%;left:40%;animation-delay:2s;"></div>
+            <div class="particle" style="top:80%;left:20%;animation-delay:3s;"></div>
+            <div class="particle" style="top:30%;left:85%;animation-delay:4s;"></div>
+          </div>
+          <div class="video-placeholder">
+            <i class="fa-solid fa-film"></i>
+            <p data-i18n="video_placeholder">Votre vidéo générée ici</p>
+          </div>
+        </div>
+        <div class="float-card float-card-1">
+          <i class="fa-solid fa-check-circle"></i>
+          <span data-i18n="float_card_generated">Vidéo générée en 30s</span>
+        </div>
+        <div class="float-card float-card-2">
+          <i class="fa-solid fa-robot"></i>
+          <span data-i18n="float_card_ai">IA Avancée</span>
+        </div>
+        <div class="float-card float-card-3">
+          <i class="fa-solid fa-high-definition"></i>
+          <span data-i18n="float_card_quality">Qualité 4K</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="section" id="features">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-label" data-i18n="features_label">Fonctionnalités</span>
+        <h2 class="section-title" data-i18n="features_title">
+          Tout ce qu'il faut pour <span class="gradient-text">créer des vidéos</span>
+        </h2>
+        <p class="section-description" data-i18n="features_desc">
+          Une suite complète d'outils IA pour créer, éditer et publier du contenu vidéo professionnel.
+        </p>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-card fade-in delay-1">
+          <div class="feature-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+          <h3 class="feature-title" data-i18n="feature_text_to_video">Génération texte-vidéo</h3>
+          <p class="feature-desc" data-i18n="feature_desc_text_to_video">Décrivez votre scène en texte et l\u0027IA génère une vidéo réaliste ou stylisée en quelques secondes.</p>
+        </div>
+        <div class="feature-card fade-in delay-2">
+          <div class="feature-icon"><i class="fa-solid fa-image"></i></div>
+          <h3 class="feature-title" data-i18n="feature_image_to_video">Image vers vidéo</h3>
+          <p class="feature-desc" data-i18n="feature_desc_image_to_video">Transformez vos photos et illustrations en vidéos animées avec mouvement fluide et transitions.</p>
+        </div>
+        <div class="feature-card fade-in delay-3">
+          <div class="feature-icon"><i class="fa-solid fa-face-smile"></i></div>
+          <h3 class="feature-title" data-i18n="feature_avatar">Avatar parlant</h3>
+          <p class="feature-desc" data-i18n="feature_desc_avatar">Créez des présentateurs virtuels qui parlent avec votre voix ou une voix synthétique réaliste.</p>
+        </div>
+        <div class="feature-card fade-in delay-1">
+          <div class="feature-icon"><i class="fa-solid fa-music"></i></div>
+          <h3 class="feature-title" data-i18n="feature_music">Musique IA</h3>
+          <p class="feature-desc" data-i18n="feature_desc_music">Générez des bandes sons originales et des effets sonores adaptés à l\u0027ambiance de votre vidéo.</p>
+        </div>
+        <div class="feature-card fade-in delay-2">
+          <div class="feature-icon"><i class="fa-solid fa-closed-captioning"></i></div>
+          <h3 class="feature-title" data-i18n="feature_subtitles">Sous-titres auto</h3>
+          <p class="feature-desc" data-i18n="feature_desc_subtitles">Transcription automatique avec traduction en 30+ langues et styles de sous-titres personnalisables.</p>
+        </div>
+        <div class="feature-card fade-in delay-3">
+          <div class="feature-icon"><i class="fa-solid fa-sliders"></i></div>
+          <h3 class="feature-title" data-i18n="feature_editing">Édition intelligente</h3>
+          <p class="feature-desc" data-i18n="feature_desc_editing">Coupe automatique, remplacement de fond, correction colorimétrique et étalonnage IA.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section class="section" id="how-it-works">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-label" data-i18n="process_label">Processus</span>
+        <h2 class="section-title" data-i18n="process_title">
+          De l'idée à la vidéo en <span class="gradient-text">3 étapes</span>
+        </h2>
+        <p class="section-description" data-i18n="process_desc">
+          Notre technologie IA simplifie la création vidéo pour que vous puissiez vous concentrer sur votre message.
+        </p>
+      </div>
+
+      <div class="steps-grid fade-in">
+        <div class="step-card">
+          <div class="step-number">1</div>
+          <h3 class="step-title" data-i18n="step1_title">Décrivez votre vidéo</h3>
+          <p class="step-desc" data-i18n="step1_desc">Rédigez un prompt détaillé ou choisissez parmi nos templates prédéfinis.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">2</div>
+          <h3 class="step-title" data-i18n="step2_title">Personnalisez</h3>
+          <p class="step-desc" data-i18n="step2_desc">Ajustez le style, la durée, la musique et les voix selon vos besoins.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">3</div>
+          <h3 class="step-title" data-i18n="step3_title">Générez & Téléchargez</h3>
+          <p class="step-desc" data-i18n="step3_desc">L\u0027IA produit votre vidéo en HD ou 4K, prête à être publiée partout.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">4</div>
+          <h3 class="step-title" data-i18n="step4_title">Publiez</h3>
+          <p class="step-desc" data-i18n="step4_desc">Exportez dans tous les formats (YouTube, TikTok, Instagram, etc.).</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Section -->
+  <section class="section" id="pricing">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-label" data-i18n="pricing_label">Tarifs</span>
+        <h2 class="section-title" data-i18n="pricing_title">
+          Un prix simple, <span class="gradient-text">tout inclus</span>
+        </h2>
+        <p class="section-description" data-i18n="pricing_desc">
+          Générez des vidéos par IA avec un système de points transparent : 1 000 points/mois pour 25\$, soit environ 25 vidéos de 30 secondes.
+        </p>
+      </div>
+
+      <div class="pricing-grid fade-in">
+        <div class="pricing-card">
+          <div class="pricing-name" data-i18n="plan_free_name">Découverte</div>
+          <p class="pricing-desc" data-i18n="plan_free_desc">Pour tester la plateforme</p>
+          <div class="pricing-price">
+            <span class="price-value"><span class="price-currency">$</span>0</span>
+            <span class="price-period">/ <span data-i18n="plan_free_period">essai 3 jours</span></span>
+          </div>
+          <ul class="pricing-features">
+            <li class="pricing-feature"><i class="fa-solid fa-check"></i> <span data-i18n="plan_free_feature1">3 vidéos de test</span></li>
+            <li class="pricing-feature"><i class="fa-solid fa-check"></i> <span data-i18n="plan_free_feature2">Qualité 720p</span></li>
+            <li class="pricing-feature"><i class="fa-solid fa-check"></i> <span data-i18n="plan_free_feature3">Templates basiques</span></li>
+            <li class="pricing-feature disabled"><i class="fa-solid fa-xmark"></i> <span data-i18n="plan_free_feature4">Voix IA</span></li>
+            <li class="pricing-feature disabled"><i class="fa-solid fa-xmark"></i> <span data-i18n="plan_free_feature5">Export 4K</span></li>
+          </ul>
+          <a href="register.html" class="btn btn-secondary btn-block" data-i18n="btn_try_free">Essayer gratuitement</a>
+        </div>
+
+        <div class="pricing-card popular">
+          <div class="popular-badge" data-i18n="popular_badge">Plus populaire</div>
+          <div class="pricing-name" data-i18n="plan_pro_name">Pro</div>
+          <p class="pricing-desc" data-i18n="plan_pro_desc">Pour créateurs & professionnels</p>
+          <div class="pricing-price">
+            <span class="price-value"><span class="price-currency">$</span>25</span>
+            <span class="price-period">/ <span data-i18n="plan_pro_period">mois</span></span>
+          </div>
+          <ul class="pricing-features">
+            <li class="pricing-feature"><i class="fa-solid fa-check"></i> 1 000 points/mois (~25 vidéos 30s)</li>
+            <li class="pricing-feature"><i class="fa-solid fa-check"></i> <span data-i18n="plan_pro_feature2">Qualité 4K Ultra HD</span></li>
+            <li class="pricing-feature"><i class="fa-solid fa-check"></i> <span data-i18n="plan_pro_feature3">Tous les templates</span></li>
+            <li class="pricing-feature"><i class="fa-solid fa-check"></i> <span data-i18n="plan_pro_feature4">Voix & avatars IA</span></li>
+            <li class="pricing-feature"><i class="fa-solid fa-check"></i> <span data-i18n="plan_pro_feature5">Sous-titres auto 30+ langues</span></li>
+            <li class="pricing-feature"><i class="fa-solid fa-check"></i> <span data-i18n="plan_pro_feature6">Support prioritaire</span></li>
+          </ul>
+          <a href="register.html?plan=pro" class="btn btn-primary btn-block" data-i18n="btn_start_now">Commencer maintenant</a>
+        </div>
+
+        <!-- Plan Entreprise supprimé - uniquement Pro disponible -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="section" id="testimonials">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-label" data-i18n="testimonials_label">Témoignages</span>
+        <h2 class="section-title" data-i18n="testimonials_title">
+          Ils utilisent <span class="gradient-text">Ipvideo</span>
+        </h2>
+        <p class="section-description">
+          Rejoignez des milliers de créateurs, marketers et entreprises qui transforment leur contenu.
+        </p>
+      </div>
+
+      <div class="testimonials-grid fade-in">
+        <div class="testimonial-card">
+          <div class="testimonial-stars">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+          </div>
+          <p class="testimonial-text">
+            "Ipvideo a révolutionné notre production de contenu. Ce qui prenait des jours se fait maintenant en minutes. Un investissement de 25$/mois qui a boosté notre ROI de 300%."
+          </p>
+          <div class="testimonial-author">
+            <div class="author-avatar">SM</div>
+            <div class="author-info">
+              <span class="author-name">Sarah Mitchell</span>
+              <span class="author-role">Directrice Marketing, TechFlow</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="testimonial-stars">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+          </div>
+          <p class="testimonial-text">
+            "En tant qu'influenceur, je dois publier quotidiennement. Ipvideo me permet de créer des vidéos TikTok et Reels professionnels sans passer des heures en montage. Génial !"
+          </p>
+          <div class="testimonial-author">
+            <div class="author-avatar">JD</div>
+            <div class="author-info">
+              <span class="author-name">Julien Dubois</span>
+              <span class="author-role">Créateur de contenu, 500K abonnés</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="testimonial-stars">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star-half-stroke"></i>
+          </div>
+          <p class="testimonial-text">
+            "Nous formons des milliers d'employés à travers le monde. Ipvideo nous aide à produire des vidéos de formation localisées en 12 langues, automatiquement."
+          </p>
+          <div class="testimonial-author">
+            <div class="author-avatar">AK</div>
+            <div class="author-info">
+              <span class="author-name">Amara Kone</span>
+              <span class="author-role">Responsable L&D, GlobalCorp</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="section" id="faq">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-label" data-i18n="faq_label">FAQ</span>
+        <h2 class="section-title" data-i18n="faq_title">
+          Questions <span class="gradient-text">fréquentes</span>
+        </h2>
+        <p class="section-description">
+          Tout ce que vous devez savoir avant de commencer avec Ipvideo.
+        </p>
+      </div>
+
+      <div class="faq-list fade-in">
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>Que puis-je créer avec Ipvideo ?</span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </button>
+          <div class="faq-answer">
+            <p>Ipvideo permet de créer des vidéos marketing, des tutoriels, des vidéos pour réseaux sociaux (TikTok, Instagram, YouTube), des présentations avec avatar IA, des publicités, des vidéos de formation et bien plus. La qualité va du 720p au 4K selon votre plan.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>Comment fonctionne l'essai gratuit ?</span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </button>
+          <div class="faq-answer">
+            <p>Vous disposez de 3 jours et de 3 vidéos gratuites pour tester toutes les fonctionnalités. Aucune carte bancaire n'est requise pour l'essai. Passé ce délai, vous pouvez souscrire au plan Pro à 25$/mois.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>Puis-je annuler mon abonnement à tout moment ?</span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </button>
+          <div class="faq-answer">
+            <p>Oui, absolument. Vous pouvez annuler votre abonnement Pro à 25$/mois à tout moment depuis votre tableau de bord. Il n'y a aucun engagement ni frais de résiliation.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>Les vidéos générées me appartiennent-elles ?</span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </button>
+          <div class="faq-answer">
+            <p>Oui, vous possédez tous les droits sur les vidéos que vous générez avec Ipvideo. Vous pouvez les utiliser commercialement, les revendre ou les distribuer sans aucune restriction.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>Quels formats d'export sont disponibles ?</span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </button>
+          <div class="faq-answer">
+            <p>Ipvideo exporte en MP4, MOV, AVI avec des ratios adaptés à toutes les plateformes : 16:9 (YouTube), 9:16 (TikTok/Reels), 1:1 (Instagram), 4:5 (Facebook). Qualités disponibles : 720p, 1080p, 4K.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="section cta-section">
+    <div class="container">
+      <div class="cta-box fade-in">
+        <div class="cta-content">
+          <h2 class="cta-title">
+            Prêt à révolutionner votre <span class="gradient-text">création vidéo</span> ?
+          </h2>
+          <p class="cta-desc" data-i18n="cta2_desc">
+          Rejoignez 12 000+ utilisateurs qui créent déjà des vidéos professionnelles avec l'IA. Essai gratuit de 3 jours.
+        </p>
+          <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
+            <a href="register.html" class="btn btn-primary btn-lg btn-glow" data-i18n="btn_start_free2">
+              <i class="fa-solid fa-rocket"></i>
+              Commencer gratuitement
+            </a>
+            <a href="pricing.html" class="btn btn-secondary btn-lg">
+              Voir les tarifs
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="logo">
+            <div class="logo-icon"><i class="fa-solid fa-play"></i></div>
+            <span>Ipvideo</span>
+          </a>
+          <p><span data-i18n="footer_brand_desc">La plateforme de génération vidéo par IA pour créateurs, marketers et entreprises. Créez du contenu professionnel en quelques clics.</span></p>
+        </div>
+
+        <div>
+          <h4 class="footer-title" data-i18n="footer_product">Produit</h4>
+          <ul class="footer-links">
+            <li><a href="index.html#features" class="footer-link" data-i18n="footer_link_features">Fonctionnalités</a></li>
+            <li><a href="pricing.html" class="footer-link" data-i18n="footer_link_pricing">Tarifs</a></li>
+            <li><a href="generate.html" class="footer-link" data-i18n="footer_link_generate">Générer une vidéo</a></li>
+            <li><a href="login.html" class="footer-link" data-i18n="footer_link_login">Connexion</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-title" data-i18n="footer_resources">Ressources</h4>
+          <ul class="footer-links">
+            <li><a href="#" class="footer-link" data-i18n="footer_link_docs">Documentation</a></li>
+            <li><a href="#" class="footer-link" data-i18n="footer_link_tutorials">Tutoriels</a></li>
+            <li><a href="#" class="footer-link" data-i18n="footer_link_blog">Blog</a></li>
+            <li><a href="#" class="footer-link" data-i18n="footer_link_api">API</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-title" data-i18n="footer_company">Entreprise</h4>
+          <ul class="footer-links">
+            <li><a href="#" class="footer-link" data-i18n="footer_link_about">À propos</a></li>
+            <li><a href="#" class="footer-link" data-i18n="footer_link_contact">Contact</a></li>
+            <li><a href="#" class="footer-link" data-i18n="footer_link_careers">Carrières</a></li>
+            <li><a href="#" class="footer-link" data-i18n="footer_link_legal">Mentions légales</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p data-i18n="footer_copyright">© 2026 Ipvideo. Tous droits réservés.</p>
+        <div class="footer-socials">
+          <a href="#" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+          <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
+
+
+
+
+
+

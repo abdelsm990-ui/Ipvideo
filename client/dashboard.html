@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tableau de bord — Ipvideo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <script src="js/i18n.js"></script>
+</head>
+<body>
+
+  <div class="bg-mesh"></div>
+  <div class="bg-grid"></div>
+
+  <header class="header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">
+        <div class="logo-icon"><i class="fa-solid fa-play"></i></div>
+        <span>Ipvideo</span>
+      </a>
+      <div class="header-actions">
+        <div class="lang-selector">
+          <a href="#" class="lang-btn" data-lang="fr">FR</a>
+          <a href="#" class="lang-btn" data-lang="en">EN</a>
+          <a href="#" class="lang-btn" data-lang="ar">AR</a>
+        </div>
+        <span id="userName" style="font-size:0.875rem; color:var(--text-secondary); margin-right:8px;"></span>
+        <button id="logoutBtn" class="btn btn-ghost btn-sm"><i class="fa-solid fa-right-from-bracket"></i> <span data-i18n="logout">Déconnexion</span></button>
+      </div>
+    </div>
+  </header>
+
+  <div class="dashboard">
+    <div class="dashboard-inner">
+      <aside class="sidebar">
+        <span class="sidebar-section" data-i18n="menu">Menu</span>
+        <a href="dashboard.html" class="sidebar-link active"><i class="fa-solid fa-grid-2"></i> <span data-i18n="nav_dashboard">Tableau de bord</span></a>
+        <a href="generate.html" class="sidebar-link"><i class="fa-solid fa-wand-magic-sparkles"></i> <span data-i18n="nav_generate">Générer une vidéo</span></a>
+        <a href="#" class="sidebar-link"><i class="fa-solid fa-video"></i> <span data-i18n="nav_my_videos">Mes vidéos</span></a>
+        <a href="#" class="sidebar-link"><i class="fa-solid fa-image"></i> <span data-i18n="nav_templates">Templates</span></a>
+
+        <span class="sidebar-section" data-i18n="settings">Paramètres</span>
+        <a href="#" class="sidebar-link"><i class="fa-solid fa-credit-card"></i> <span data-i18n="nav_subscription">Abonnement</span></a>
+        <a href="#" class="sidebar-link"><i class="fa-solid fa-user"></i> <span data-i18n="nav_profile">Profil</span></a>
+        <a href="#" class="sidebar-link"><i class="fa-solid fa-circle-question"></i> <span data-i18n="nav_help">Aide</span></a>
+      </aside>
+
+      <main class="main-content">
+        <div id="welcomeToast" style="display:none; margin-bottom:24px; padding:16px 20px; background:rgba(16,185,129,0.1); border:1px solid rgba(16,185,129,0.3); border-radius:var(--radius-md); color:var(--success); font-size:0.9rem;">
+          <i class="fa-solid fa-check-circle"></i> <span data-i18n="welcome_toast">Bienvenue sur Ipvideo ! Votre essai gratuit de 3 jours commence maintenant.</span>
+        </div>
+
+        <h1 class="page-title" data-i18n="dashboard_title">Tableau de bord</h1>
+
+        <div class="stats-row">
+          <div class="stat-card">
+            <div class="stat-card-header">
+              <span class="stat-card-label" data-i18n="stat_videos_created">Vidéos créées</span>
+              <div class="stat-card-icon"><i class="fa-solid fa-video"></i></div>
+            </div>
+            <div class="stat-card-value" id="statVideos">0</div>
+            <div class="stat-card-change"><i class="fa-solid fa-arrow-trend-up"></i> +12% <span data-i18n="this_month">ce mois</span></div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-card-header">
+              <span class="stat-card-label" data-i18n="stat_minutes_generated">Minutes générées</span>
+              <div class="stat-card-icon" style="background:rgba(236,72,153,0.15); color:var(--accent-secondary);"><i class="fa-solid fa-clock"></i></div>
+            </div>
+            <div class="stat-card-value" id="statMinutes">0</div>
+            <div class="stat-card-change"><i class="fa-solid fa-arrow-trend-up"></i> +8% <span data-i18n="this_month">ce mois</span></div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-card-header">
+              <span class="stat-card-label" data-i18n="stat_points_available">Points disponibles</span>
+              <div class="stat-card-icon" style="background:rgba(139,92,246,0.15); color:var(--accent-tertiary);"><i class="fa-solid fa-coins"></i></div>
+            </div>
+            <div class="stat-card-value" id="statPoints">0</div>
+            <div class="stat-card-change"><i class="fa-solid fa-rotate"></i> <span id="statPointsText">1 vidéo = 40 pts</span></div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-card-header">
+              <span class="stat-card-label" data-i18n="stat_current_plan">Plan actuel</span>
+              <div class="stat-card-icon" style="background:rgba(6,182,212,0.15); color:var(--accent-cyan);"><i class="fa-solid fa-crown"></i></div>
+            </div>
+            <div class="stat-card-value" style="font-size:1.1rem;"><span id="statPlan" class="gradient-text">Pro</span></div>
+            <div class="stat-card-change">25$/<span data-i18n="per_month">mois</span></div>
+          </div>
+        </div>
+
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+          <h2 style="font-size:1.25rem;" data-i18n="recent_videos">Vidéos récentes</h2>
+          <a href="generate.html" class="btn btn-primary btn-sm"><i class="fa-solid fa-plus"></i> <span data-i18n="new_video">Nouvelle vidéo</span></a>
+        </div>
+
+        <div class="content-grid" id="recentVideos">
+          <div class="content-card" style="opacity:0.6;">
+            <div class="content-thumb">
+              <i class="fa-solid fa-film"></i>
+            </div>
+            <div class="content-info">
+              <div class="content-title" data-i18n="no_videos_yet">Aucune vidéo encore</div>
+              <div class="content-meta" data-i18n="generate_first_video">Commencez par générer votre première vidéo</div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script>
+    (async () => {
+      if (!checkAuth()) return;
+
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.get('welcome')) {
+        document.getElementById('welcomeToast').style.display = 'block';
+        setTimeout(() => { document.getElementById('welcomeToast').style.display = 'none'; }, 6000);
+      }
+
+      // Handle PayPal return
+      if (urlParams.get('checkout') === 'success') {
+        const orderId = urlParams.get('token'); // PayPal returns order ID as 'token'
+        const subscriptionId = urlParams.get('subscription_id');
+        const plan = localStorage.getItem('ipvideo_intended_plan');
+
+        if (orderId && plan) {
+          try {
+            await paymentAPI.capturePayPalOrder(orderId, plan);
+            document.getElementById('welcomeToast').innerHTML = '<i class="fa-solid fa-check-circle"></i> ' + (typeof t === 'function' ? t('payment_confirmed') : 'Paiement confirmé ! Votre abonnement est maintenant actif.');
+            document.getElementById('welcomeToast').style.display = 'block';
+            setTimeout(() => { document.getElementById('welcomeToast').style.display = 'none'; }, 6000);
+            localStorage.removeItem('ipvideo_intended_plan');
+            // Refresh user data
+            await loadUser();
+          } catch (err) {
+            console.error('Capture error:', err);
+          }
+        } else if (subscriptionId) {
+          // Subscription will be activated by webhook, just show confirmation
+          document.getElementById('welcomeToast').innerHTML = '<i class="fa-solid fa-check-circle"></i> ' + (typeof t === 'function' ? t('paypal_confirmed') : 'Abonnement PayPal confirmé ! Activation en cours...');
+          document.getElementById('welcomeToast').style.display = 'block';
+          setTimeout(() => { document.getElementById('welcomeToast').style.display = 'none'; }, 6000);
+          localStorage.removeItem('ipvideo_intended_plan');
+          await loadUser();
+        }
+      }
+
+      try {
+        // Load user from API
+        const userData = await authAPI.me();
+        const user = userData.user;
+        setUser(user);
+
+        document.getElementById('userName').textContent = user.firstName + ' ' + user.lastName;
+        document.getElementById('statPlan').textContent = user.plan.charAt(0).toUpperCase() + user.plan.slice(1);
+        document.getElementById('statPoints').textContent = user.pointsBalance || 0;
+        document.getElementById('statVideos').textContent = user.videoCount || 0;
+        // Update points text based on balance
+        const videosPossible = Math.floor((user.pointsBalance || 0) / 40);
+        const videoWord = typeof t === 'function' ? t('video_singular') : 'vidéo';
+        const videosWord = typeof t === 'function' ? t('video_plural') : 'vidéos';
+        const possibleWord = typeof t === 'function' ? t('possible') : 'possible';
+        const possiblesWord = typeof t === 'function' ? t('possible_plural') : 'possibles';
+        document.getElementById('statPointsText').textContent = videosPossible + ' ' + (videosPossible > 1 ? videosWord : videoWord) + ' ' + (videosPossible > 1 ? possiblesWord : possibleWord);
+
+        // Load videos from API
+        const videoData = await videoAPI.myVideos();
+        const videos = videoData.videos || [];
+        const minutes = videos.reduce((acc, v) => acc + (v.duration || 0), 0);
+        document.getElementById('statMinutes').textContent = Math.round(minutes) + ' min';
+
+        const grid = document.getElementById('recentVideos');
+        if (videos.length > 0) {
+          grid.innerHTML = videos.slice(0, 6).map(v => `
+            <div class="content-card">
+              <div class="content-thumb" style="position:relative;">
+                <i class="fa-solid fa-${v.status === 'completed' ? 'play-circle' : (v.status === 'generating' ? 'circle-notch fa-spin' : 'clock')}"></i>
+                ${v.status !== 'completed' ? `<span style="position:absolute; bottom:8px; right:8px; padding:2px 8px; background:rgba(0,0,0,0.6); border-radius:4px; font-size:0.7rem; text-transform:uppercase;">${v.status}</span>` : ''}
+              </div>
+              <div class="content-info">
+                <div class="content-title">${v.title || (typeof t === 'function' ? t('untitled_video') : 'Vidéo sans titre')}</div>
+                <div class="content-meta">
+                  <span>${v.duration || 0}s</span> · <span>${v.quality || '1080p'}</span> · <span>${new Date(v.createdAt).toLocaleDateString('fr-FR')}</span>
+                </div>
+              </div>
+            </div>
+          `).join('');
+        }
+      } catch (err) {
+        console.error('Dashboard load error:', err);
+        if (err.status === 401) logout();
+      }
+    })();
+
+    document.getElementById('logoutBtn').addEventListener('click', logout);
+  </script>
+</body>
+</html>
