@@ -2,6 +2,7 @@ import express, { Request, Response } from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
 import path from 'path';
+import fs from 'fs';
 
 import authRoutes from './routes/auth';
 import videoRoutes from './routes/video';
@@ -36,7 +37,21 @@ app.get('/api/health', (_req: Request, res: Response) => {
 
 // Serve static client in production
 if (process.env.NODE_ENV === 'production') {
-  const clientPath = path.join(__dirname, '../client');
+  // Try multiple possible paths (Docker vs native Node.js)
+  const possiblePaths = [
+    path.join(__dirname, '../client'),      // Docker: /app/dist -> /app/client
+    path.join(__dirname, '../../client'),   // Native: /server/dist -> /client
+  ];
+
+  let clientPath = possiblePaths.find((p) => fs.existsSync(p));
+
+  if (!clientPath) {
+    console.warn('Client directory not found. Checked:', possiblePaths);
+    clientPath = possiblePaths[0];
+  } else {
+    console.log('Serving static files from:', clientPath);
+  }
+
   app.use(express.static(clientPath));
   app.get('*', (_req: Request, res: Response) => {
     res.sendFile(path.join(clientPath, 'index.html'));

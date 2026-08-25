@@ -1,0 +1,12 @@
+{
+  "name": "ipvideo-app",
+  "version": "1.0.0",
+  "description": "Ipvideo - AI Video Generation",
+  "scripts": {
+    "build": "cd server && npm ci && npm run build",
+    "start": "cd server && npm start"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
