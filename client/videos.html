@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mes vidéos — Ipseedance</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <style>
+    .videos-toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .videos-filters {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .filter-btn {
+      padding: 8px 16px;
+      border-radius: var(--radius-sm);
+      font-size: 0.85rem;
+      font-weight: 500;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border-glass);
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: var(--transition-fast);
+    }
+    .filter-btn:hover {
+      background: rgba(255,255,255,0.08);
+      color: var(--text-primary);
+    }
+    .filter-btn.active {
+      background: rgba(99, 102, 241, 0.15);
+      border-color: rgba(99, 102, 241, 0.3);
+      color: var(--accent-primary);
+    }
+    .search-box {
+      position: relative;
+      min-width: 240px;
+    }
+    .search-box i {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+    .search-box input {
+      width: 100%;
+      padding: 10px 14px 10px 38px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-sm);
+      color: var(--text-primary);
+      font-size: 0.875rem;
+      font-family: inherit;
+    }
+    .search-box input:focus {
+      outline: none;
+      border-color: var(--accent-primary);
+      background: rgba(255,255,255,0.05);
+    }
+    .search-box input::placeholder {
+      color: var(--text-muted);
+    }
+    .videos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    .video-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      transition: var(--transition-base);
+    }
+    .video-card:hover {
+      border-color: rgba(99, 102, 241, 0.3);
+      transform: translateY(-2px);
+    }
+    .video-thumb {
+      aspect-ratio: 16/10;
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(236, 72, 153, 0.15));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    .video-thumb i {
+      font-size: 2.5rem;
+      color: var(--accent-primary);
+      opacity: 0.5;
+    }
+    .video-status-badge {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      padding: 3px 10px;
+      border-radius: 100px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+    .video-status-badge.completed {
+      background: rgba(16, 185, 129, 0.15);
+      color: var(--success);
+      border: 1px solid rgba(16, 185, 129, 0.2);
+    }
+    .video-status-badge.generating {
+      background: rgba(245, 158, 11, 0.15);
+      color: var(--warning);
+      border: 1px solid rgba(245, 158, 11, 0.2);
+    }
+    .video-status-badge.pending {
+      background: rgba(99, 102, 241, 0.15);
+      color: var(--accent-primary);
+      border: 1px solid rgba(99, 102, 241, 0.2);
+    }
+    .video-status-badge.failed {
+      background: rgba(239, 68, 68, 0.15);
+      color: var(--danger);
+      border: 1px solid rgba(239, 68, 68, 0.2);
+    }
+    .video-info {
+      padding: 16px;
+    }
+    .video-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .video-meta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+    .video-actions {
+      display: flex;
+      gap: 8px;
+    }
+    .video-actions .btn {
+      padding: 6px 12px;
+      font-size: 0.8rem;
+    }
+    .empty-state {
+      text-align: center;
+      padding: 60px 24px;
+      color: var(--text-muted);
+    }
+    .empty-state i {
+      font-size: 3rem;
+      margin-bottom: 16px;
+      opacity: 0.5;
+    }
+    .empty-state h3 {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      margin-bottom: 8px;
+    }
+    .empty-state p {
+      font-size: 0.875rem;
+      margin-bottom: 24px;
+    }
+    .videos-count {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+    @media (max-width: 768px) {
+      .videos-toolbar {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .search-box {
+        min-width: auto;
+      }
+      .videos-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bg-mesh"></div>
+  <div class="bg-grid"></div>
+
+  <header class="header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">
+        <div class="logo-icon"><i class="fa-solid fa-seedling"></i></div>
+        <span>Ipseedance</span>
+      </a>
+      <div class="header-actions">
+        <span id="userName" style="font-size:0.875rem; color:var(--text-secondary); margin-right:8px;"></span>
+        <button id="logoutBtn" class="btn btn-ghost btn-sm"><i class="fa-solid fa-right-from-bracket"></i> <span>Déconnexion</span></button>
+      </div>
+      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div class="mobile-nav" id="mobileNav">
+      <a href="dashboard.html" class="nav-link"><i class="fa-solid fa-grid-2"></i> Tableau de bord</a>
+      <a href="generate.html" class="nav-link"><i class="fa-solid fa-wand-magic-sparkles"></i> Générer une vidéo</a>
+      <a href="videos.html" class="nav-link active"><i class="fa-solid fa-video"></i> Mes vidéos</a>
+      <a href="subscription.html" class="nav-link"><i class="fa-solid fa-credit-card"></i> Abonnement</a>
+      <a href="profile.html" class="nav-link"><i class="fa-solid fa-user"></i> Profil</a>
+      <a href="help.html" class="nav-link"><i class="fa-solid fa-circle-question"></i> Aide</a>
+      <a href="index.html" class="nav-link"><i class="fa-solid fa-home"></i> Accueil</a>
+      <button id="logoutBtnMobile" class="btn btn-danger btn-block" style="margin-top:16px;"><i class="fa-solid fa-right-from-bracket"></i> Déconnexion</button>
+    </div>
+  </header>
+
+  <div class="dashboard">
+    <div class="dashboard-inner">
+      <aside class="sidebar">
+        <span class="sidebar-section">Menu</span>
+        <a href="dashboard.html" class="sidebar-link"><i class="fa-solid fa-grid-2"></i> <span>Tableau de bord</span></a>
+        <a href="generate.html" class="sidebar-link"><i class="fa-solid fa-wand-magic-sparkles"></i> <span>Générer une vidéo</span></a>
+        <a href="videos.html" class="sidebar-link active"><i class="fa-solid fa-video"></i> <span>Mes vidéos</span></a>
+
+        <span class="sidebar-section">Paramètres</span>
+        <a href="subscription.html" class="sidebar-link"><i class="fa-solid fa-credit-card"></i> <span>Abonnement</span></a>
+        <a href="profile.html" class="sidebar-link"><i class="fa-solid fa-user"></i> <span>Profil</span></a>
+        <a href="help.html" class="sidebar-link"><i class="fa-solid fa-circle-question"></i> <span>Aide</span></a>
+      </aside>
+
+      <main class="main-content">
+        <h1 class="page-title"><i class="fa-solid fa-video"></i> <span>Mes vidéos</span></h1>
+
+        <div class="videos-toolbar">
+          <div class="videos-filters">
+            <button class="filter-btn active" data-filter="all">Toutes</button>
+            <button class="filter-btn" data-filter="completed">Terminées</button>
+            <button class="filter-btn" data-filter="generating">En cours</button>
+            <button class="filter-btn" data-filter="pending">En attente</button>
+            <button class="filter-btn" data-filter="failed">Échouées</button>
+          </div>
+          <div class="search-box">
+            <i class="fa-solid fa-search"></i>
+            <input type="text" id="searchVideos" placeholder="Rechercher une vidéo...">
+          </div>
+        </div>
+
+        <div class="videos-count" id="videosCount">Chargement...</div>
+
+        <div class="videos-grid" id="videosGrid">
+          <div class="empty-state" id="emptyState">
+            <i class="fa-solid fa-film"></i>
+            <h3>Aucune vidéo pour l'instant</h3>
+            <p>Commencez par générer votre première vidéo avec notre IA.</p>
+            <a href="generate.html" class="btn btn-primary"><i class="fa-solid fa-plus"></i> Générer une vidéo</a>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script>
+    let allVideos = [];
+    let currentFilter = 'all';
+
+    (async () => {
+      if (!checkAuth()) return;
+
+      try {
+        const userData = await authAPI.me();
+        const user = userData.user;
+        setUser(user);
+        document.getElementById('userName').textContent = user.firstName + ' ' + user.lastName;
+
+        const videoData = await videoAPI.myVideos();
+        allVideos = videoData.videos || [];
+        renderVideos();
+      } catch (err) {
+        console.error('Videos load error:', err);
+        if (err.status === 401) logout();
+      }
+    })();
+
+    function getStatusLabel(status) {
+      const labels = {
+        completed: 'Terminée',
+        generating: 'En cours',
+        pending: 'En attente',
+        failed: 'Échouée'
+      };
+      return labels[status] || status;
+    }
+
+    function getStatusIcon(status) {
+      const icons = {
+        completed: 'fa-circle-play',
+        generating: 'fa-circle-notch fa-spin',
+        pending: 'fa-clock',
+        failed: 'fa-triangle-exclamation'
+      };
+      return icons[status] || 'fa-film';
+    }
+
+    function renderVideos() {
+      const grid = document.getElementById('videosGrid');
+      const searchTerm = document.getElementById('searchVideos').value.toLowerCase().trim();
+
+      let filtered = allVideos;
+
+      if (currentFilter !== 'all') {
+        filtered = filtered.filter(v => v.status === currentFilter);
+      }
+
+      if (searchTerm) {
+        filtered = filtered.filter(v =>
+          (v.title || '').toLowerCase().includes(searchTerm) ||
+          (v.prompt || '').toLowerCase().includes(searchTerm)
+        );
+      }
+
+      document.getElementById('videosCount').textContent =
+        filtered.length + ' vidéo' + (filtered.length > 1 ? 's' : '');
+
+      if (filtered.length === 0) {
+        const isSearch = searchTerm || currentFilter !== 'all';
+        grid.innerHTML = `
+          <div class="empty-state" style="grid-column: 1 / -1;">
+            <i class="fa-solid fa-${isSearch ? 'magnifying-glass' : 'film'}"></i>
+            <h3>${isSearch ? 'Aucun résultat trouvé' : 'Aucune vidéo pour l\'instant'}</h3>
+            <p>${isSearch ? 'Essayez un autre terme de recherche ou filtre.' : 'Commencez par générer votre première vidéo avec notre IA.'}</p>
+            ${!isSearch ? '<a href="generate.html" class="btn btn-primary"><i class="fa-solid fa-plus"></i> Générer une vidéo</a>' : ''}
+          </div>
+        `;
+        return;
+      }
+
+      grid.innerHTML = filtered.map(v => `
+        <div class="video-card">
+          <div class="video-thumb">
+            <i class="fa-solid ${getStatusIcon(v.status)}"></i>
+            <span class="video-status-badge ${v.status}">${getStatusLabel(v.status)}</span>
+          </div>
+          <div class="video-info">
+            <div class="video-title" title="${v.title || 'Vidéo sans titre'}">${v.title || 'Vidéo sans titre'}</div>
+            <div class="video-meta">
+              <span><i class="fa-solid fa-clock" style="margin-right:4px;"></i>${v.duration || 0}s</span>
+              <span><i class="fa-solid fa-display" style="margin-right:4px;"></i>${v.quality || '1080p'}</span>
+              <span><i class="fa-solid fa-calendar" style="margin-right:4px;"></i>${new Date(v.createdAt).toLocaleDateString('fr-FR')}</span>
+            </div>
+            <div class="video-actions">
+              ${v.status === 'completed' ? `<a href="${v.videoUrl || '#' }" class="btn btn-primary btn-sm" target="_blank"><i class="fa-solid fa-play"></i> Voir</a>` : ''}
+              ${v.status === 'failed' ? `<span style="font-size:0.75rem; color:var(--danger);"><i class="fa-solid fa-triangle-exclamation"></i> Erreur</span>` : ''}
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // Filter buttons
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentFilter = btn.dataset.filter;
+        renderVideos();
+      });
+    });
+
+    // Search
+    document.getElementById('searchVideos').addEventListener('input', renderVideos);
+
+    document.getElementById('logoutBtn').addEventListener('click', logout);
+    const logoutBtnMobile = document.getElementById('logoutBtnMobile');
+    if (logoutBtnMobile) logoutBtnMobile.addEventListener('click', logout);
+  </script>
+  <script src="js/main.js"></script>
+</body>
+</html>

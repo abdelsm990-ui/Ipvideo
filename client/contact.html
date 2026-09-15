@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact — Ipseedance</title>
+  <meta name="description" content="Contactez Ipseedance. Téléphone +1 774-537-5979. Support WhatsApp +212 645-214-466.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- Background Effects -->
+  <div class="bg-mesh"></div>
+  <div class="bg-grid"></div>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">
+        <div class="logo-icon"><i class="fa-solid fa-seedling"></i></div>
+        <span>Ipseedance</span>
+      </a>
+
+      <nav class="nav-desktop">
+        <a href="index.html#features" class="nav-link">Fonctionnalités</a>
+        <a href="how-it-works.html" class="nav-link">Comment ça marche</a>
+        <a href="pricing.html" class="nav-link">Tarifs</a>
+        <a href="index.html#faq" class="nav-link">FAQ</a>
+      </nav>
+
+      <div class="header-actions">
+<a href="login.html" class="btn btn-ghost btn-sm">Connexion</a>
+        <a href="register.html" class="btn btn-primary btn-sm">Commencer</a>
+      </div>
+
+      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+
+    <div class="mobile-nav" id="mobileNav">
+      <a href="index.html#features" class="nav-link">Fonctionnalités</a>
+      <a href="how-it-works.html" class="nav-link">Comment ça marche</a>
+      <a href="pricing.html" class="nav-link">Tarifs</a>
+      <a href="index.html#faq" class="nav-link">FAQ</a>
+      <a href="login.html" class="nav-link">Connexion</a>
+      <a href="register.html" class="btn btn-primary">Commencer</a>
+    </div>
+  </header>
+
+
+  <main class="content-page">
+    <div class="content-page-inner">
+      <h1 class="content-page-title">Contactez-<span class="gradient-text">nous</span></h1>
+      <p class="content-page-subtitle">Nous sommes là pour vous aider</p>
+      <div class="info-cards">
+        <div class="info-card">
+          <div class="info-card-icon"><i class="fa-solid fa-phone"></i></div>
+          <div class="info-card-label">Téléphone</div>
+          <div class="info-card-value"><a href="tel:+17745375979">+1 774-537-5979</a></div>
+        </div>
+        <div class="info-card">
+          <div class="info-card-icon"><i class="fa-brands fa-whatsapp"></i></div>
+          <div class="info-card-label">Support WhatsApp</div>
+          <div class="info-card-value"><a href="https://wa.me/212645214466" target="_blank">+212 645-214-466</a></div>
+        </div>
+        <div class="info-card">
+          <div class="info-card-icon"><i class="fa-solid fa-building"></i></div>
+          <div class="info-card-label">Entreprise</div>
+          <div class="info-card-value">Birdyam LLC</div>
+        </div>
+      </div>
+      <div class="content-section" style="margin-top:48px;">
+        <h2><i class="fa-solid fa-paper-plane"></i> Envoyez-nous un message</h2>
+        <form class="contact-form" onsubmit="event.preventDefault(); alert('Message envoyé ! Nous vous répondrons dans les plus brefs délais.');">
+          <div class="form-group"><label class="form-label" for="contactName">Nom</label><input type="text" id="contactName" class="form-input" placeholder="Votre nom" required></div>
+          <div class="form-group"><label class="form-label" for="contactEmail">Email</label><input type="email" id="contactEmail" class="form-input" placeholder="vous@exemple.com" required></div>
+          <div class="form-group"><label class="form-label" for="contactMessage">Message</label><textarea id="contactMessage" class="form-input" placeholder="Votre message..." required></textarea></div>
+          <button type="submit" class="btn btn-primary btn-block"><i class="fa-solid fa-paper-plane"></i> Envoyer le message</button>
+        </form>
+      </div>
+    </div>
+  </main>
+
+
+<footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="logo">
+            <div class="logo-icon"><i class="fa-solid fa-seedling"></i></div>
+            <span>Ipseedance</span>
+          </a>
+          <p><span>La plateforme de génération vidéo par IA pour créateurs, marketers et entreprises. Créez du contenu professionnel en quelques clics.</span></p>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Produit</h4>
+          <ul class="footer-links">
+            <li><a href="index.html#features" class="footer-link">Fonctionnalités</a></li>
+            <li><a href="pricing.html" class="footer-link">Tarifs</a></li>
+            <li><a href="generate.html" class="footer-link">Générer une vidéo</a></li>
+            <li><a href="login.html" class="footer-link">Connexion</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Ressources</h4>
+          <ul class="footer-links">
+            <li><a href="#" class="footer-link">Documentation</a></li>
+            <li><a href="#" class="footer-link">Tutoriels</a></li>
+            <li><a href="#" class="footer-link">Blog</a></li>
+            <li><a href="#" class="footer-link">API</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Entreprise</h4>
+          <ul class="footer-links">
+            <li><a href="about.html" class="footer-link">À propos</a></li>
+            <li><a href="contact.html" class="footer-link">Contact</a></li>
+            <li><a href="careers.html" class="footer-link">Carrières</a></li>
+            <li><a href="legal.html" class="footer-link">Mentions légales</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 Ipseedance. Tous droits réservés.</p>
+        <div class="footer-socials">
+          <a href="#" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+          <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
+

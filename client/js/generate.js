@@ -1,5 +1,5 @@
 /* ============================================
-   Ipvideo - Video Generation (Production API)
+   Ipseedance - Video Generation (Production API)
    ============================================ */
 
 const generateForm = document.getElementById('generateForm');
@@ -26,8 +26,8 @@ function updateCostDisplay() {
   const duration = parseInt(durationSelect.value);
   const modelQuality = modelQualitySelect ? modelQualitySelect.value : 'standard';
   const cost = calculateVideoCost(duration, modelQuality);
-  const label = typeof t === 'function' ? t('generate_cost_label') : 'Coût estimé';
-  const points = typeof t === 'function' ? t('generate_points') : 'points';
+  const label = 'Coût estimé';
+  const points = 'points';
   costDisplay.innerHTML = `${label}: <strong style="color:var(--accent-primary);">${cost} ${points}</strong>`;
 }
 
@@ -53,12 +53,12 @@ updatePointsDisplay();
 
 function getGenerationSteps() {
   return [
-    { pct: 10, text: typeof t === 'function' ? t('generate_progress_step1') : 'Envoi du prompt au serveur...' },
-    { pct: 25, text: typeof t === 'function' ? t('generate_progress_step2') : 'Création de la prédiction IA...' },
-    { pct: 40, text: typeof t === 'function' ? t('generate_progress_step3') : 'Génération des keyframes en cours...' },
-    { pct: 60, text: typeof t === 'function' ? t('generate_progress_step4') : 'Rendu vidéo par le modèle IA...' },
-    { pct: 80, text: typeof t === 'function' ? t('generate_progress_step5') : 'Encodage et post-traitement...' },
-    { pct: 100, text: typeof t === 'function' ? t('generate_progress_step6') : 'Finalisé !' },
+    { pct: 10, text: 'Envoi du prompt au serveur...' },
+    { pct: 25, text: 'Création de la prédiction IA...' },
+    { pct: 40, text: 'Génération des keyframes en cours...' },
+    { pct: 60, text: 'Rendu vidéo par le modèle IA...' },
+    { pct: 80, text: 'Encodage et post-traitement...' },
+    { pct: 100, text: 'Finalisé !' },
   ];
 }
 
@@ -71,7 +71,7 @@ if (generateForm) {
 
 async function startGeneration() {
   generateBtn.disabled = true;
-  const launchingText = typeof t === 'function' ? t('generate_progress_step1') : 'Lancement...';
+  const launchingText = 'Lancement...';
   generateBtn.innerHTML = `<i class="fa-solid fa-circle-notch fa-spin"></i> ${launchingText}`;
 
   previewPlaceholder.style.display = 'none';
@@ -90,7 +90,7 @@ async function startGeneration() {
 
   try {
     // Step 1: Submit to backend
-    updateProgress(10, typeof t === 'function' ? t('generate_progress_step1') : 'Envoi du prompt au serveur...');
+    updateProgress(10, 'Envoi du prompt au serveur...');
     const response = await videoAPI.generate({ prompt, style, duration, quality, ratio, music, modelQuality });
     const videoId = response.video.id;
 
@@ -118,22 +118,22 @@ async function startGeneration() {
 
       // Update progress based on status
       if (status === 'pending') {
-        updateProgress(20 + Math.min(attempts * 2, 30), typeof t === 'function' ? t('generate_status_pending') : 'En attente du modèle IA...');
+        updateProgress(20 + Math.min(attempts * 2, 30), 'En attente du modèle IA...');
       } else if (status === 'generating') {
-        updateProgress(50 + Math.min(attempts * 2, 35), typeof t === 'function' ? t('generate_status_generating') : 'Génération vidéo en cours...');
+        updateProgress(50 + Math.min(attempts * 2, 35), 'Génération vidéo en cours...');
       } else if (status === 'completed') {
-        updateProgress(100, typeof t === 'function' ? t('generate_status_completed') : 'Vidéo prête !');
+        updateProgress(100, 'Vidéo prête !');
         completed = true;
         showResult(videoId, statusRes.videoUrl);
       } else if (status === 'failed') {
-        updateProgress(0, typeof t === 'function' ? t('generate_status_failed') : 'Échec de la génération');
+        updateProgress(0, 'Échec de la génération');
         completed = true;
-        showError(statusRes.errorMessage || (typeof t === 'function' ? t('generate_status_failed') : 'La génération a échoué'));
+        showError(statusRes.errorMessage || ('La génération a échoué'));
       }
     }
 
     if (!completed) {
-      showError(typeof t === 'function' ? t('generate_timeout') : 'Délai de génération dépassé. Vérifiez votre tableau de bord plus tard.');
+      showError('Délai de génération dépassé. Vérifiez votre tableau de bord plus tard.');
     }
   } catch (err) {
     console.error('Generation error:', err);
@@ -141,13 +141,13 @@ async function startGeneration() {
       const insufficientMsg = typeof t === 'function'
         ? t('generate_insufficient_points').replace('{cost}', err.data.pointsRequired).replace('{balance}', err.data.pointsBalance)
         : `Points insuffisants. Cette vidéo coûte ${err.data.pointsRequired} points. Vous en avez ${err.data.pointsBalance}.`;
-      showError(insufficientMsg + ` <a href="pricing.html" style="color:var(--accent-primary); text-decoration:underline;">${typeof t === 'function' ? t('generate_recharge') : 'Rechargez ici'}</a>.`);
+      showError(insufficientMsg + ` <a href="pricing.html" style="color:var(--accent-primary); text-decoration:underline;">${'Rechargez ici'}</a>.`);
     } else {
-      showError(err.data?.message || err.message || (typeof t === 'function' ? t('generate_error') : 'Erreur lors de la génération'));
+      showError(err.data?.message || err.message || ('Erreur lors de la génération'));
     }
   } finally {
     generateBtn.disabled = false;
-    const generateText = typeof t === 'function' ? t('generate_btn') : 'Générer la vidéo';
+    const generateText = 'Générer la vidéo';
     generateBtn.innerHTML = `<i class="fa-solid fa-bolt"></i> ${generateText}`;
   }
 }
@@ -164,7 +164,7 @@ function showResult(videoId, videoUrl) {
 
   const videoFallback = document.getElementById('videoFallback');
   const browserNoSupport = typeof t === 'function' ? 'Your browser does not support video playback.' : 'Votre navigateur ne supporte pas la lecture vidéo.';
-  const resultSuccess = typeof t === 'function' ? t('generate_result_success') : 'Vidéo générée avec succès !';
+  const resultSuccess = 'Vidéo générée avec succès !';
   if (videoUrl) {
     videoFallback.innerHTML = `
       <video controls style="width:100%; height:100%; border-radius:12px;">

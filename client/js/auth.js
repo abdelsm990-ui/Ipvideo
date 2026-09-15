@@ -1,5 +1,5 @@
 /* ============================================
-   Ipvideo - Auth Utilities (Production API)
+   Ipseedance - Auth Utilities (Production API)
    ============================================ */
 
 function getToken() {

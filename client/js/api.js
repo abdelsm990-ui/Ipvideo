@@ -1,5 +1,5 @@
 /* ============================================
-   Ipvideo - API Client (Frontend)
+   Ipseedance - API Client (Frontend)
    PayPal + Supabase version
    ============================================ */
 

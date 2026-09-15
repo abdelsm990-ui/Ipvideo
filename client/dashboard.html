@@ -3,15 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tableau de bord — Ipvideo</title>
+  <title>Tableau de bord — Ipseedance</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/responsive.css">
-  <script src="js/i18n.js"></script>
 </head>
 <body>
 
@@ -21,65 +19,77 @@
   <header class="header">
     <div class="container header-inner">
       <a href="index.html" class="logo">
-        <div class="logo-icon"><i class="fa-solid fa-play"></i></div>
-        <span>Ipvideo</span>
+        <div class="logo-icon"><i class="fa-solid fa-seedling"></i></div>
+        <span>Ipseedance</span>
       </a>
       <div class="header-actions">
-        <div class="lang-selector">
-          <a href="#" class="lang-btn" data-lang="fr">FR</a>
-          <a href="#" class="lang-btn" data-lang="en">EN</a>
-          <a href="#" class="lang-btn" data-lang="ar">AR</a>
-        </div>
-        <span id="userName" style="font-size:0.875rem; color:var(--text-secondary); margin-right:8px;"></span>
-        <button id="logoutBtn" class="btn btn-ghost btn-sm"><i class="fa-solid fa-right-from-bracket"></i> <span data-i18n="logout">Déconnexion</span></button>
+<span id="userName" style="font-size:0.875rem; color:var(--text-secondary); margin-right:8px;"></span>
+        <button id="logoutBtn" class="btn btn-ghost btn-sm"><i class="fa-solid fa-right-from-bracket"></i> <span>Déconnexion</span></button>
       </div>
+      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div class="mobile-nav" id="mobileNav">
+      <a href="dashboard.html" class="nav-link active"><i class="fa-solid fa-grid-2"></i> Tableau de bord</a>
+      <a href="generate.html" class="nav-link"><i class="fa-solid fa-wand-magic-sparkles"></i> Générer une vidéo</a>
+      <a href="videos.html" class="nav-link"><i class="fa-solid fa-video"></i> Mes vidéos</a>
+      <a href="#" class="nav-link"><i class="fa-solid fa-image"></i> Templates</a>
+      <a href="subscription.html" class="nav-link"><i class="fa-solid fa-credit-card"></i> Abonnement</a>
+      <a href="profile.html" class="nav-link"><i class="fa-solid fa-user"></i> Profil</a>
+      <a href="help.html" class="nav-link"><i class="fa-solid fa-circle-question"></i> Aide</a>
+      <a href="pricing.html" class="nav-link"><i class="fa-solid fa-tag"></i> Tarifs</a>
+      <a href="index.html" class="nav-link"><i class="fa-solid fa-home"></i> Accueil</a>
+      <button id="logoutBtnMobile" class="btn btn-danger btn-block" style="margin-top:16px;"><i class="fa-solid fa-right-from-bracket"></i> Déconnexion</button>
     </div>
   </header>
 
   <div class="dashboard">
     <div class="dashboard-inner">
       <aside class="sidebar">
-        <span class="sidebar-section" data-i18n="menu">Menu</span>
-        <a href="dashboard.html" class="sidebar-link active"><i class="fa-solid fa-grid-2"></i> <span data-i18n="nav_dashboard">Tableau de bord</span></a>
-        <a href="generate.html" class="sidebar-link"><i class="fa-solid fa-wand-magic-sparkles"></i> <span data-i18n="nav_generate">Générer une vidéo</span></a>
-        <a href="#" class="sidebar-link"><i class="fa-solid fa-video"></i> <span data-i18n="nav_my_videos">Mes vidéos</span></a>
-        <a href="#" class="sidebar-link"><i class="fa-solid fa-image"></i> <span data-i18n="nav_templates">Templates</span></a>
+        <span class="sidebar-section">Menu</span>
+        <a href="dashboard.html" class="sidebar-link active"><i class="fa-solid fa-grid-2"></i> <span>Tableau de bord</span></a>
+        <a href="generate.html" class="sidebar-link"><i class="fa-solid fa-wand-magic-sparkles"></i> <span>Générer une vidéo</span></a>
+        <a href="videos.html" class="sidebar-link"><i class="fa-solid fa-video"></i> <span>Mes vidéos</span></a>
+        <a href="#" class="sidebar-link"><i class="fa-solid fa-image"></i> <span>Templates</span></a>
 
-        <span class="sidebar-section" data-i18n="settings">Paramètres</span>
-        <a href="#" class="sidebar-link"><i class="fa-solid fa-credit-card"></i> <span data-i18n="nav_subscription">Abonnement</span></a>
-        <a href="#" class="sidebar-link"><i class="fa-solid fa-user"></i> <span data-i18n="nav_profile">Profil</span></a>
-        <a href="#" class="sidebar-link"><i class="fa-solid fa-circle-question"></i> <span data-i18n="nav_help">Aide</span></a>
+        <span class="sidebar-section">Paramètres</span>
+        <a href="subscription.html" class="sidebar-link"><i class="fa-solid fa-credit-card"></i> <span>Abonnement</span></a>
+        <a href="profile.html" class="sidebar-link"><i class="fa-solid fa-user"></i> <span>Profil</span></a>
+        <a href="help.html" class="sidebar-link"><i class="fa-solid fa-circle-question"></i> <span>Aide</span></a>
       </aside>
 
       <main class="main-content">
         <div id="welcomeToast" style="display:none; margin-bottom:24px; padding:16px 20px; background:rgba(16,185,129,0.1); border:1px solid rgba(16,185,129,0.3); border-radius:var(--radius-md); color:var(--success); font-size:0.9rem;">
-          <i class="fa-solid fa-check-circle"></i> <span data-i18n="welcome_toast">Bienvenue sur Ipvideo ! Votre essai gratuit de 3 jours commence maintenant.</span>
+          <i class="fa-solid fa-check-circle"></i> <span>Bienvenue sur Ipseedance ! Votre essai gratuit de 3 jours commence maintenant.</span>
         </div>
 
-        <h1 class="page-title" data-i18n="dashboard_title">Tableau de bord</h1>
+        <h1 class="page-title">Tableau de bord</h1>
 
         <div class="stats-row">
           <div class="stat-card">
             <div class="stat-card-header">
-              <span class="stat-card-label" data-i18n="stat_videos_created">Vidéos créées</span>
+              <span class="stat-card-label">Vidéos créées</span>
               <div class="stat-card-icon"><i class="fa-solid fa-video"></i></div>
             </div>
             <div class="stat-card-value" id="statVideos">0</div>
-            <div class="stat-card-change"><i class="fa-solid fa-arrow-trend-up"></i> +12% <span data-i18n="this_month">ce mois</span></div>
+            <div class="stat-card-change"><i class="fa-solid fa-arrow-trend-up"></i> +12% <span>ce mois</span></div>
           </div>
 
           <div class="stat-card">
             <div class="stat-card-header">
-              <span class="stat-card-label" data-i18n="stat_minutes_generated">Minutes générées</span>
+              <span class="stat-card-label">Minutes générées</span>
               <div class="stat-card-icon" style="background:rgba(236,72,153,0.15); color:var(--accent-secondary);"><i class="fa-solid fa-clock"></i></div>
             </div>
             <div class="stat-card-value" id="statMinutes">0</div>
-            <div class="stat-card-change"><i class="fa-solid fa-arrow-trend-up"></i> +8% <span data-i18n="this_month">ce mois</span></div>
+            <div class="stat-card-change"><i class="fa-solid fa-arrow-trend-up"></i> +8% <span>ce mois</span></div>
           </div>
 
           <div class="stat-card">
             <div class="stat-card-header">
-              <span class="stat-card-label" data-i18n="stat_points_available">Points disponibles</span>
+              <span class="stat-card-label">Points disponibles</span>
               <div class="stat-card-icon" style="background:rgba(139,92,246,0.15); color:var(--accent-tertiary);"><i class="fa-solid fa-coins"></i></div>
             </div>
             <div class="stat-card-value" id="statPoints">0</div>
@@ -88,17 +98,17 @@
 
           <div class="stat-card">
             <div class="stat-card-header">
-              <span class="stat-card-label" data-i18n="stat_current_plan">Plan actuel</span>
+              <span class="stat-card-label">Plan actuel</span>
               <div class="stat-card-icon" style="background:rgba(6,182,212,0.15); color:var(--accent-cyan);"><i class="fa-solid fa-crown"></i></div>
             </div>
             <div class="stat-card-value" style="font-size:1.1rem;"><span id="statPlan" class="gradient-text">Pro</span></div>
-            <div class="stat-card-change">25$/<span data-i18n="per_month">mois</span></div>
+            <div class="stat-card-change">25$/<span>mois</span></div>
           </div>
         </div>
 
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
-          <h2 style="font-size:1.25rem;" data-i18n="recent_videos">Vidéos récentes</h2>
-          <a href="generate.html" class="btn btn-primary btn-sm"><i class="fa-solid fa-plus"></i> <span data-i18n="new_video">Nouvelle vidéo</span></a>
+          <h2 style="font-size:1.25rem;">Vidéos récentes</h2>
+          <a href="generate.html" class="btn btn-primary btn-sm"><i class="fa-solid fa-plus"></i> <span>Nouvelle vidéo</span></a>
         </div>
 
         <div class="content-grid" id="recentVideos">
@@ -107,8 +117,8 @@
               <i class="fa-solid fa-film"></i>
             </div>
             <div class="content-info">
-              <div class="content-title" data-i18n="no_videos_yet">Aucune vidéo encore</div>
-              <div class="content-meta" data-i18n="generate_first_video">Commencez par générer votre première vidéo</div>
+              <div class="content-title">Aucune vidéo encore</div>
+              <div class="content-meta">Commencez par générer votre première vidéo</div>
             </div>
           </div>
         </div>
@@ -204,6 +214,9 @@
     })();
 
     document.getElementById('logoutBtn').addEventListener('click', logout);
+    const logoutBtnMobile = document.getElementById('logoutBtnMobile');
+    if (logoutBtnMobile) logoutBtnMobile.addEventListener('click', logout);
   </script>
+  <script src="js/main.js"></script>
 </body>
 </html>

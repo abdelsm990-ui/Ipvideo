@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aide & Support — Ipseedance</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <style>
+    .help-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+    .help-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      transition: var(--transition-base);
+    }
+    .help-card:hover {
+      border-color: rgba(99, 102, 241, 0.3);
+      transform: translateY(-2px);
+    }
+    .help-card-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: var(--radius-md);
+      background: rgba(99, 102, 241, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      color: var(--accent-primary);
+      margin-bottom: 16px;
+    }
+    .help-card h3 {
+      font-size: 1.05rem;
+      margin-bottom: 8px;
+    }
+    .help-card p {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+    .help-faq-section {
+      margin-bottom: 40px;
+    }
+    .help-faq-section h2 {
+      font-size: 1.25rem;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .help-faq-section h2 i {
+      color: var(--accent-primary);
+    }
+    .help-contact {
+      background: var(--bg-card);
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      text-align: center;
+    }
+    .help-contact h2 {
+      font-size: 1.25rem;
+      margin-bottom: 8px;
+    }
+    .help-contact p {
+      color: var(--text-secondary);
+      margin-bottom: 24px;
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .contact-options {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .contact-option {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 24px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-md);
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: var(--transition-fast);
+    }
+    .contact-option:hover {
+      background: rgba(99, 102, 241, 0.1);
+      border-color: rgba(99, 102, 241, 0.3);
+    }
+    .contact-option i {
+      color: var(--accent-primary);
+    }
+    .guide-step {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 20px;
+      padding: 20px;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-md);
+    }
+    .guide-step-number {
+      width: 36px;
+      height: 36px;
+      min-width: 36px;
+      border-radius: 50%;
+      background: rgba(99, 102, 241, 0.15);
+      color: var(--accent-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+    .guide-step h4 {
+      font-size: 0.95rem;
+      margin-bottom: 4px;
+    }
+    .guide-step p {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+    @media (max-width: 768px) {
+      .help-grid {
+        grid-template-columns: 1fr;
+      }
+      .contact-options {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bg-mesh"></div>
+  <div class="bg-grid"></div>
+
+  <header class="header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">
+        <div class="logo-icon"><i class="fa-solid fa-seedling"></i></div>
+        <span>Ipseedance</span>
+      </a>
+      <div class="header-actions">
+        <span id="userName" style="font-size:0.875rem; color:var(--text-secondary); margin-right:8px;"></span>
+        <button id="logoutBtn" class="btn btn-ghost btn-sm"><i class="fa-solid fa-right-from-bracket"></i> <span>Déconnexion</span></button>
+      </div>
+      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div class="mobile-nav" id="mobileNav">
+      <a href="dashboard.html" class="nav-link"><i class="fa-solid fa-grid-2"></i> Tableau de bord</a>
+      <a href="generate.html" class="nav-link"><i class="fa-solid fa-wand-magic-sparkles"></i> Générer une vidéo</a>
+      <a href="videos.html" class="nav-link"><i class="fa-solid fa-video"></i> Mes vidéos</a>
+      <a href="subscription.html" class="nav-link"><i class="fa-solid fa-credit-card"></i> Abonnement</a>
+      <a href="profile.html" class="nav-link"><i class="fa-solid fa-user"></i> Profil</a>
+      <a href="help.html" class="nav-link active"><i class="fa-solid fa-circle-question"></i> Aide</a>
+      <a href="index.html" class="nav-link"><i class="fa-solid fa-home"></i> Accueil</a>
+      <button id="logoutBtnMobile" class="btn btn-danger btn-block" style="margin-top:16px;"><i class="fa-solid fa-right-from-bracket"></i> Déconnexion</button>
+    </div>
+  </header>
+
+  <div class="dashboard">
+    <div class="dashboard-inner">
+      <aside class="sidebar">
+        <span class="sidebar-section">Menu</span>
+        <a href="dashboard.html" class="sidebar-link"><i class="fa-solid fa-grid-2"></i> <span>Tableau de bord</span></a>
+        <a href="generate.html" class="sidebar-link"><i class="fa-solid fa-wand-magic-sparkles"></i> <span>Générer une vidéo</span></a>
+        <a href="videos.html" class="sidebar-link"><i class="fa-solid fa-video"></i> <span>Mes vidéos</span></a>
+
+        <span class="sidebar-section">Paramètres</span>
+        <a href="subscription.html" class="sidebar-link"><i class="fa-solid fa-credit-card"></i> <span>Abonnement</span></a>
+        <a href="profile.html" class="sidebar-link"><i class="fa-solid fa-user"></i> <span>Profil</span></a>
+        <a href="help.html" class="sidebar-link active"><i class="fa-solid fa-circle-question"></i> <span>Aide</span></a>
+      </aside>
+
+      <main class="main-content">
+        <h1 class="page-title"><i class="fa-solid fa-circle-question"></i> <span>Aide & Support</span></h1>
+
+        <div class="help-grid">
+          <a href="#guides" class="help-card" style="text-decoration:none; color:inherit;">
+            <div class="help-card-icon"><i class="fa-solid fa-book-open"></i></div>
+            <h3>Guides d'utilisation</h3>
+            <p>Apprenez à créer vos premières vidéos, personnaliser les paramètres et télécharger vos résultats.</p>
+            <span style="font-size:0.8rem; color:var(--accent-primary); font-weight:600;">Lire les guides →</span>
+          </a>
+          <a href="#faq" class="help-card" style="text-decoration:none; color:inherit;">
+            <div class="help-card-icon"><i class="fa-solid fa-comments"></i></div>
+            <h3>Questions fréquentes</h3>
+            <p>Trouvez rapidement des réponses aux questions les plus courantes sur l'abonnement, les points et la qualité.</p>
+            <span style="font-size:0.8rem; color:var(--accent-primary); font-weight:600;">Voir la FAQ →</span>
+          </a>
+          <a href="contact.html" class="help-card" style="text-decoration:none; color:inherit;">
+            <div class="help-card-icon"><i class="fa-solid fa-headset"></i></div>
+            <h3>Contacter le support</h3>
+            <p>Besoin d'aide personnalisée ? Notre équipe est là pour vous accompagner. Réponse sous 24h.</p>
+            <span style="font-size:0.8rem; color:var(--accent-primary); font-weight:600;">Nous contacter →</span>
+          </a>
+        </div>
+
+        <div class="help-faq-section" id="guides">
+          <h2><i class="fa-solid fa-book-open"></i> Guide rapide : Créer une vidéo</h2>
+          <div class="guide-step">
+            <div class="guide-step-number">1</div>
+            <div>
+              <h4>Décrivez votre scène</h4>
+              <p>Rendez-vous sur « Générer une vidéo » et décrivez en quelques phrases ce que vous voulez voir. Plus votre description est détaillée, meilleur sera le résultat.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">2</div>
+            <div>
+              <h4>Personnalisez les paramètres</h4>
+              <p>Choisissez le style visuel (réaliste, anime, cyberpunk...), la durée, la qualité (720p, 1080p, 4K) et le format adapté à votre plateforme.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="guide-step-number">3</div>
+            <div>
+              <h4>Générez et téléchargez</h4>
+              <p>Cliquez sur « Générer la vidéo ». Le traitement prend quelques minutes. Une fois terminée, retrouvez-la dans « Mes vidéos » et téléchargez-la en MP4.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="help-faq-section" id="faq">
+          <h2><i class="fa-solid fa-comments"></i> Questions fréquentes</h2>
+          <div class="faq-list">
+            <div class="faq-item">
+              <button class="faq-question">
+                <span>Combien de points coûte une vidéo ?</span>
+                <i class="fa-solid fa-chevron-down"></i>
+              </button>
+              <div class="faq-answer">
+                <p>Le coût dépend de la durée et de la qualité choisies. En moyenne, une vidéo de 5 secondes en 720p coûte environ 20 points. Une vidéo de 15 secondes en 1080p coûte environ 40 points. Le modèle Premium coûte 3× plus de points mais offre une qualité supérieure.</p>
+              </div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-question">
+                <span>Que se passe-t-il quand mes points sont épuisés ?</span>
+                <i class="fa-solid fa-chevron-down"></i>
+              </button>
+              <div class="faq-answer">
+                <p>Vous pouvez recharger vos points à tout moment depuis la page « Tarifs » ou « Mon abonnement ». Les abonnements Pro incluent 500 points renouvelés chaque mois.</p>
+              </div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-question">
+                <span>Puis-je annuler mon abonnement à tout moment ?</span>
+                <i class="fa-solid fa-chevron-down"></i>
+              </button>
+              <div class="faq-answer">
+                <p>Oui, vous pouvez annuler depuis la page « Mon abonnement ». Vous conserverez l'accès jusqu'à la fin de la période payée. Aucun frais de résiliation.</p>
+              </div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-question">
+                <span>Quels formats d'export sont disponibles ?</span>
+                <i class="fa-solid fa-chevron-down"></i>
+              </button>
+              <div class="faq-answer">
+                <p>Nous exportons au format MP4 avec des ratios adaptés : 16:9 (YouTube), 9:16 (TikTok/Reels), 1:1 (Instagram) et 4:5 (Facebook Feed). Qualités : 720p, 1080p et 4K Ultra HD.</p>
+              </div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-question">
+                <span>Mes vidéos générées me appartiennent-elles ?</span>
+                <i class="fa-solid fa-chevron-down"></i>
+              </button>
+              <div class="faq-answer">
+                <p>Oui, vous possédez tous les droits sur les vidéos que vous générez. Vous pouvez les utiliser commercialement, les revendre ou les distribuer sans restriction.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="help-contact">
+          <h2>Besoin d'aide supplémentaire ?</h2>
+          <p>Notre équipe est disponible pour répondre à vos questions. Choisissez le canal qui vous convient le mieux.</p>
+          <div class="contact-options">
+            <a href="contact.html" class="contact-option"><i class="fa-solid fa-envelope"></i> Envoyer un email</a>
+            <a href="https://wa.me/212645214466" target="_blank" class="contact-option"><i class="fa-brands fa-whatsapp"></i> WhatsApp Support</a>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script>
+    (async () => {
+      if (!checkAuth()) return;
+
+      try {
+        const userData = await authAPI.me();
+        const user = userData.user;
+        setUser(user);
+        document.getElementById('userName').textContent = user.firstName + ' ' + user.lastName;
+      } catch (err) {
+        if (err.status === 401) logout();
+      }
+    })();
+
+    // FAQ accordion (same logic as main.js)
+    document.querySelectorAll('.faq-item').forEach(item => {
+      const question = item.querySelector('.faq-question');
+      question.addEventListener('click', () => {
+        const isActive = item.classList.contains('active');
+        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+        if (!isActive) {
+          item.classList.add('active');
+        }
+      });
+    });
+
+    document.getElementById('logoutBtn').addEventListener('click', logout);
+    const logoutBtnMobile = document.getElementById('logoutBtnMobile');
+    if (logoutBtnMobile) logoutBtnMobile.addEventListener('click', logout);
+  </script>
+  <script src="js/main.js"></script>
+</body>
+</html>

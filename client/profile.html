@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mon profil — Ipseedance</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <style>
+    .profile-layout {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 24px;
+    }
+    .profile-sidebar {
+      text-align: center;
+    }
+    .profile-avatar {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: var(--accent-gradient);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      font-weight: 800;
+      color: white;
+      margin: 0 auto 16px;
+      box-shadow: 0 8px 30px rgba(99, 102, 241, 0.3);
+    }
+    .profile-name {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .profile-email {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+      word-break: break-all;
+    }
+    .profile-plan-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: 100px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-bottom: 24px;
+    }
+    .profile-plan-badge.free {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border-glass);
+      color: var(--text-secondary);
+    }
+    .profile-plan-badge.pro {
+      background: rgba(99, 102, 241, 0.1);
+      border: 1px solid rgba(99, 102, 241, 0.3);
+      color: var(--accent-primary);
+    }
+    .profile-stats {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      text-align: left;
+    }
+    .profile-stat {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      font-size: 0.875rem;
+    }
+    .profile-stat:last-child {
+      border-bottom: none;
+    }
+    .profile-stat-label {
+      color: var(--text-muted);
+    }
+    .profile-stat-value {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+    .profile-form-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      margin-bottom: 24px;
+    }
+    .profile-form-card h3 {
+      font-size: 1.1rem;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .profile-form-card h3 i {
+      color: var(--accent-primary);
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .form-message {
+      margin-top: 12px;
+      padding: 10px 14px;
+      border-radius: var(--radius-sm);
+      font-size: 0.875rem;
+      display: none;
+    }
+    .form-message.success {
+      display: block;
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid rgba(16, 185, 129, 0.2);
+      color: var(--success);
+    }
+    .form-message.error {
+      display: block;
+      background: rgba(239, 68, 68, 0.1);
+      border: 1px solid rgba(239, 68, 68, 0.2);
+      color: var(--danger);
+    }
+    @media (max-width: 768px) {
+      .profile-layout {
+        grid-template-columns: 1fr;
+      }
+      .profile-sidebar {
+        margin-bottom: 24px;
+      }
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bg-mesh"></div>
+  <div class="bg-grid"></div>
+
+  <header class="header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">
+        <div class="logo-icon"><i class="fa-solid fa-seedling"></i></div>
+        <span>Ipseedance</span>
+      </a>
+      <div class="header-actions">
+        <span id="userName" style="font-size:0.875rem; color:var(--text-secondary); margin-right:8px;"></span>
+        <button id="logoutBtn" class="btn btn-ghost btn-sm"><i class="fa-solid fa-right-from-bracket"></i> <span>Déconnexion</span></button>
+      </div>
+      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div class="mobile-nav" id="mobileNav">
+      <a href="dashboard.html" class="nav-link"><i class="fa-solid fa-grid-2"></i> Tableau de bord</a>
+      <a href="generate.html" class="nav-link"><i class="fa-solid fa-wand-magic-sparkles"></i> Générer une vidéo</a>
+      <a href="videos.html" class="nav-link"><i class="fa-solid fa-video"></i> Mes vidéos</a>
+      <a href="subscription.html" class="nav-link"><i class="fa-solid fa-credit-card"></i> Abonnement</a>
+      <a href="profile.html" class="nav-link active"><i class="fa-solid fa-user"></i> Profil</a>
+      <a href="help.html" class="nav-link"><i class="fa-solid fa-circle-question"></i> Aide</a>
+      <a href="index.html" class="nav-link"><i class="fa-solid fa-home"></i> Accueil</a>
+      <button id="logoutBtnMobile" class="btn btn-danger btn-block" style="margin-top:16px;"><i class="fa-solid fa-right-from-bracket"></i> Déconnexion</button>
+    </div>
+  </header>
+
+  <div class="dashboard">
+    <div class="dashboard-inner">
+      <aside class="sidebar">
+        <span class="sidebar-section">Menu</span>
+        <a href="dashboard.html" class="sidebar-link"><i class="fa-solid fa-grid-2"></i> <span>Tableau de bord</span></a>
+        <a href="generate.html" class="sidebar-link"><i class="fa-solid fa-wand-magic-sparkles"></i> <span>Générer une vidéo</span></a>
+        <a href="videos.html" class="sidebar-link"><i class="fa-solid fa-video"></i> <span>Mes vidéos</span></a>
+
+        <span class="sidebar-section">Paramètres</span>
+        <a href="subscription.html" class="sidebar-link"><i class="fa-solid fa-credit-card"></i> <span>Abonnement</span></a>
+        <a href="profile.html" class="sidebar-link active"><i class="fa-solid fa-user"></i> <span>Profil</span></a>
+        <a href="help.html" class="sidebar-link"><i class="fa-solid fa-circle-question"></i> <span>Aide</span></a>
+      </aside>
+
+      <main class="main-content">
+        <h1 class="page-title"><i class="fa-solid fa-user"></i> <span>Mon profil</span></h1>
+
+        <div class="profile-layout">
+          <div class="profile-sidebar">
+            <div class="profile-avatar" id="profileAvatar"></div>
+            <div class="profile-name" id="profileName">—</div>
+            <div class="profile-email" id="profileEmail">—</div>
+            <div class="profile-plan-badge" id="profilePlanBadge"><i class="fa-solid fa-crown"></i> Plan</div>
+
+            <div class="profile-stats">
+              <div class="profile-stat">
+                <span class="profile-stat-label">Points disponibles</span>
+                <span class="profile-stat-value" id="profilePoints">0</span>
+              </div>
+              <div class="profile-stat">
+                <span class="profile-stat-label">Vidéos créées</span>
+                <span class="profile-stat-value" id="profileVideos">0</span>
+              </div>
+              <div class="profile-stat">
+                <span class="profile-stat-label">Membre depuis</span>
+                <span class="profile-stat-value" id="profileDate">—</span>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div class="profile-form-card">
+              <h3><i class="fa-solid fa-id-card"></i> Informations personnelles</h3>
+              <form id="profileForm">
+                <div class="form-row">
+                  <div class="form-group">
+                    <label class="form-label" for="firstName">Prénom</label>
+                    <input type="text" id="firstName" class="form-input" required>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="lastName">Nom</label>
+                    <input type="text" id="lastName" class="form-input" required>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="email">Adresse email</label>
+                  <input type="email" id="email" class="form-input" required>
+                </div>
+                <button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Enregistrer les modifications</button>
+                <div class="form-message" id="profileMessage"></div>
+              </form>
+            </div>
+
+            <div class="profile-form-card">
+              <h3><i class="fa-solid fa-lock"></i> Sécurité</h3>
+              <form id="passwordForm">
+                <div class="form-group">
+                  <label class="form-label" for="currentPassword">Mot de passe actuel</label>
+                  <input type="password" id="currentPassword" class="form-input" placeholder="••••••••" required>
+                </div>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label class="form-label" for="newPassword">Nouveau mot de passe</label>
+                    <input type="password" id="newPassword" class="form-input" placeholder="Minimum 8 caractères" required>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="confirmPassword">Confirmer le mot de passe</label>
+                    <input type="password" id="confirmPassword" class="form-input" placeholder="Répétez le nouveau mot de passe" required>
+                  </div>
+                </div>
+                <button type="submit" class="btn btn-secondary"><i class="fa-solid fa-key"></i> Changer le mot de passe</button>
+                <div class="form-message" id="passwordMessage"></div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script>
+    (async () => {
+      if (!checkAuth()) return;
+
+      try {
+        const userData = await authAPI.me();
+        const user = userData.user;
+        setUser(user);
+        document.getElementById('userName').textContent = user.firstName + ' ' + user.lastName;
+
+        renderProfile(user);
+      } catch (err) {
+        console.error('Profile load error:', err);
+        if (err.status === 401) logout();
+      }
+    })();
+
+    function renderProfile(user) {
+      document.getElementById('profileName').textContent = user.firstName + ' ' + user.lastName;
+      document.getElementById('profileEmail').textContent = user.email;
+      document.getElementById('profileAvatar').textContent = (user.firstName[0] + user.lastName[0]).toUpperCase();
+      document.getElementById('profilePoints').textContent = user.pointsBalance || 0;
+      document.getElementById('profileVideos').textContent = user.videoCount || 0;
+
+      const planEl = document.getElementById('profilePlanBadge');
+      const plan = user.plan || 'free';
+      const planNames = { free: 'Découverte', pro: 'Pro', pro720: 'Pro 720p', pro4k: 'Pro 4K' };
+      planEl.innerHTML = `<i class="fa-solid fa-crown"></i> ${planNames[plan] || plan}`;
+      planEl.className = 'profile-plan-badge ' + (plan === 'free' ? 'free' : 'pro');
+
+      document.getElementById('firstName').value = user.firstName;
+      document.getElementById('lastName').value = user.lastName;
+      document.getElementById('email').value = user.email;
+
+      // Member since
+      try {
+        const created = new Date(user.createdAt || Date.now());
+        document.getElementById('profileDate').textContent = created.toLocaleDateString('fr-FR', { month: 'long', year: 'numeric' });
+      } catch {
+        document.getElementById('profileDate').textContent = '—';
+      }
+    }
+
+    // Profile update (requires backend endpoint — currently shows notice)
+    document.getElementById('profileForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const msgEl = document.getElementById('profileMessage');
+      msgEl.className = 'form-message';
+      msgEl.style.display = 'none';
+
+      // NOTE: Backend endpoint PUT /auth/profile is needed for full functionality
+      // For now, update localStorage and show a notice
+      const currentUser = getUser();
+      if (!currentUser) return;
+
+      const updated = {
+        ...currentUser,
+        firstName: document.getElementById('firstName').value.trim(),
+        lastName: document.getElementById('lastName').value.trim(),
+        email: document.getElementById('email').value.trim(),
+      };
+      setUser(updated);
+      document.getElementById('userName').textContent = updated.firstName + ' ' + updated.lastName;
+      document.getElementById('profileName').textContent = updated.firstName + ' ' + updated.lastName;
+      document.getElementById('profileAvatar').textContent = (updated.firstName[0] + updated.lastName[0]).toUpperCase();
+
+      msgEl.textContent = 'Profil mis à jour localement. (La synchronisation avec le serveur nécessite un endpoint backend)';
+      msgEl.className = 'form-message success';
+      msgEl.style.display = 'block';
+    });
+
+    // Password change (requires backend endpoint)
+    document.getElementById('passwordForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const msgEl = document.getElementById('passwordMessage');
+      msgEl.className = 'form-message';
+      msgEl.style.display = 'none';
+
+      const newPass = document.getElementById('newPassword').value;
+      const confirmPass = document.getElementById('confirmPassword').value;
+
+      if (newPass.length < 8) {
+        msgEl.textContent = 'Le mot de passe doit contenir au moins 8 caractères.';
+        msgEl.className = 'form-message error';
+        return;
+      }
+      if (newPass !== confirmPass) {
+        msgEl.textContent = 'Les mots de passe ne correspondent pas.';
+        msgEl.className = 'form-message error';
+        return;
+      }
+
+      msgEl.textContent = 'La modification du mot de passe nécessite un endpoint backend. Contactez l\'administrateur pour activer cette fonctionnalité.';
+      msgEl.className = 'form-message error';
+      msgEl.style.display = 'block';
+    });
+
+    document.getElementById('logoutBtn').addEventListener('click', logout);
+    const logoutBtnMobile = document.getElementById('logoutBtnMobile');
+    if (logoutBtnMobile) logoutBtnMobile.addEventListener('click', logout);
+  </script>
+  <script src="js/main.js"></script>
+</body>
+</html>

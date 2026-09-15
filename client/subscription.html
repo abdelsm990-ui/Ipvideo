@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mon abonnement — Ipseedance</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <style>
+    .sub-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+      margin-bottom: 32px;
+    }
+    .sub-card {
+      padding: 24px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-lg);
+    }
+    .sub-card-label {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .sub-card-value {
+      font-size: 1.5rem;
+      font-weight: 800;
+      margin-bottom: 4px;
+    }
+    .sub-card-desc {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+    }
+    .plan-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      border-radius: 100px;
+      font-size: 0.875rem;
+      font-weight: 600;
+    }
+    .plan-badge.free {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border-glass);
+      color: var(--text-secondary);
+    }
+    .plan-badge.pro {
+      background: rgba(99, 102, 241, 0.1);
+      border: 1px solid rgba(99, 102, 241, 0.3);
+      color: var(--accent-primary);
+    }
+    .plan-details {
+      background: var(--bg-card);
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      margin-bottom: 32px;
+    }
+    .plan-details-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 20px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border-glass);
+    }
+    .plan-details h3 {
+      font-size: 1.1rem;
+      margin-bottom: 4px;
+    }
+    .plan-details p {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+    }
+    .plan-features {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .plan-feature {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+    .plan-feature i {
+      color: var(--success);
+      font-size: 0.85rem;
+    }
+    .plan-feature.disabled {
+      color: var(--text-muted);
+    }
+    .plan-feature.disabled i {
+      color: var(--danger);
+    }
+    .transactions-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .transactions-table th,
+    .transactions-table td {
+      padding: 12px 16px;
+      text-align: left;
+      font-size: 0.875rem;
+    }
+    .transactions-table th {
+      color: var(--text-muted);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      font-size: 0.75rem;
+      border-bottom: 1px solid var(--border-glass);
+    }
+    .transactions-table td {
+      color: var(--text-secondary);
+      border-bottom: 1px solid rgba(255,255,255,0.03);
+    }
+    .transactions-table tr:last-child td {
+      border-bottom: none;
+    }
+    .tx-amount.positive {
+      color: var(--success);
+      font-weight: 600;
+    }
+    .tx-amount.negative {
+      color: var(--text-primary);
+    }
+    .tx-type-badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+    .tx-type-badge.credit {
+      background: rgba(16, 185, 129, 0.1);
+      color: var(--success);
+    }
+    .tx-type-badge.debit {
+      background: rgba(99, 102, 241, 0.1);
+      color: var(--accent-primary);
+    }
+    .cancel-modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.7);
+      z-index: 10000;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    .cancel-modal-overlay.active {
+      display: flex;
+    }
+    .cancel-modal {
+      background: var(--bg-card);
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      max-width: 440px;
+      width: 100%;
+      text-align: center;
+    }
+    .cancel-modal h3 {
+      font-size: 1.2rem;
+      margin-bottom: 12px;
+    }
+    .cancel-modal p {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      margin-bottom: 24px;
+    }
+    .cancel-modal-actions {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+    }
+    @media (max-width: 768px) {
+      .sub-cards {
+        grid-template-columns: 1fr;
+      }
+      .plan-details-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .transactions-table {
+        display: block;
+        overflow-x: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bg-mesh"></div>
+  <div class="bg-grid"></div>
+
+  <header class="header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">
+        <div class="logo-icon"><i class="fa-solid fa-seedling"></i></div>
+        <span>Ipseedance</span>
+      </a>
+      <div class="header-actions">
+        <span id="userName" style="font-size:0.875rem; color:var(--text-secondary); margin-right:8px;"></span>
+        <button id="logoutBtn" class="btn btn-ghost btn-sm"><i class="fa-solid fa-right-from-bracket"></i> <span>Déconnexion</span></button>
+      </div>
+      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div class="mobile-nav" id="mobileNav">
+      <a href="dashboard.html" class="nav-link"><i class="fa-solid fa-grid-2"></i> Tableau de bord</a>
+      <a href="generate.html" class="nav-link"><i class="fa-solid fa-wand-magic-sparkles"></i> Générer une vidéo</a>
+      <a href="videos.html" class="nav-link"><i class="fa-solid fa-video"></i> Mes vidéos</a>
+      <a href="subscription.html" class="nav-link active"><i class="fa-solid fa-credit-card"></i> Abonnement</a>
+      <a href="profile.html" class="nav-link"><i class="fa-solid fa-user"></i> Profil</a>
+      <a href="help.html" class="nav-link"><i class="fa-solid fa-circle-question"></i> Aide</a>
+      <a href="index.html" class="nav-link"><i class="fa-solid fa-home"></i> Accueil</a>
+      <button id="logoutBtnMobile" class="btn btn-danger btn-block" style="margin-top:16px;"><i class="fa-solid fa-right-from-bracket"></i> Déconnexion</button>
+    </div>
+  </header>
+
+  <div class="dashboard">
+    <div class="dashboard-inner">
+      <aside class="sidebar">
+        <span class="sidebar-section">Menu</span>
+        <a href="dashboard.html" class="sidebar-link"><i class="fa-solid fa-grid-2"></i> <span>Tableau de bord</span></a>
+        <a href="generate.html" class="sidebar-link"><i class="fa-solid fa-wand-magic-sparkles"></i> <span>Générer une vidéo</span></a>
+        <a href="videos.html" class="sidebar-link"><i class="fa-solid fa-video"></i> <span>Mes vidéos</span></a>
+
+        <span class="sidebar-section">Paramètres</span>
+        <a href="subscription.html" class="sidebar-link active"><i class="fa-solid fa-credit-card"></i> <span>Abonnement</span></a>
+        <a href="profile.html" class="sidebar-link"><i class="fa-solid fa-user"></i> <span>Profil</span></a>
+        <a href="help.html" class="sidebar-link"><i class="fa-solid fa-circle-question"></i> <span>Aide</span></a>
+      </aside>
+
+      <main class="main-content">
+        <h1 class="page-title"><i class="fa-solid fa-credit-card"></i> <span>Mon abonnement</span></h1>
+
+        <div class="sub-cards">
+          <div class="sub-card">
+            <div class="sub-card-label">Plan actuel</div>
+            <div class="sub-card-value" id="planName">—</div>
+            <div class="sub-card-desc" id="planDesc">—</div>
+          </div>
+          <div class="sub-card">
+            <div class="sub-card-label">Points disponibles</div>
+            <div class="sub-card-value" id="pointsBalance">0</div>
+            <div class="sub-card-desc" id="pointsDesc">1 vidéo = 40 pts</div>
+          </div>
+          <div class="sub-card">
+            <div class="sub-card-label">Points utilisés</div>
+            <div class="sub-card-value" id="pointsUsed">0</div>
+            <div class="sub-card-desc">Total depuis la création du compte</div>
+          </div>
+          <div class="sub-card">
+            <div class="sub-card-label">Vidéos créées</div>
+            <div class="sub-card-value" id="videoCount">0</div>
+            <div class="sub-card-desc">Nombre total de générations</div>
+          </div>
+        </div>
+
+        <div class="plan-details" id="planDetails">
+          <div class="plan-details-header">
+            <div>
+              <h3>Détails de votre formule</h3>
+              <p id="planPeriod">—</p>
+            </div>
+            <div id="planBadgeContainer"></div>
+          </div>
+          <div class="plan-features" id="planFeatures"></div>
+        </div>
+
+        <div id="upgradeSection" style="margin-bottom:32px; display:none;">
+          <a href="pricing.html" class="btn btn-primary btn-lg btn-glow"><i class="fa-solid fa-rocket"></i> Passer à un plan Pro</a>
+        </div>
+
+        <div id="cancelSection" style="margin-bottom:32px; display:none;">
+          <button class="btn btn-danger" id="cancelBtn"><i class="fa-solid fa-xmark"></i> Annuler mon abonnement</button>
+        </div>
+
+        <h2 style="font-size:1.1rem; margin-bottom:16px;"><i class="fa-solid fa-clock-rotate-left"></i> Historique des transactions</h2>
+        <div style="background:var(--bg-card); border:1px solid var(--border-glass); border-radius:var(--radius-lg); overflow:hidden;">
+          <table class="transactions-table">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Type</th>
+                <th>Montant</th>
+              </tr>
+            </thead>
+            <tbody id="transactionsBody">
+              <tr><td colspan="4" style="text-align:center; padding:32px; color:var(--text-muted);">Aucune transaction</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Cancel Confirmation Modal -->
+  <div class="cancel-modal-overlay" id="cancelModal">
+    <div class="cancel-modal">
+      <i class="fa-solid fa-circle-exclamation" style="font-size:2.5rem; color:var(--danger); margin-bottom:16px; opacity:0.8;"></i>
+      <h3>Annuler l'abonnement ?</h3>
+      <p>Vous conserverez l'accès jusqu'à la fin de la période en cours. Votre compte repassera ensuite au plan gratuit.</p>
+      <div class="cancel-modal-actions">
+        <button class="btn btn-secondary" id="keepSubBtn">Garder mon abonnement</button>
+        <button class="btn btn-danger" id="confirmCancelBtn">Confirmer l'annulation</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script>
+    (async () => {
+      if (!checkAuth()) return;
+
+      try {
+        const userData = await authAPI.me();
+        const user = userData.user;
+        setUser(user);
+        document.getElementById('userName').textContent = user.firstName + ' ' + user.lastName;
+
+        renderPlan(user);
+        await loadTransactions();
+      } catch (err) {
+        console.error('Subscription load error:', err);
+        if (err.status === 401) logout();
+      }
+    })();
+
+    function renderPlan(user) {
+      const plan = user.plan || 'free';
+      const planNames = {
+        free: 'Découverte',
+        pro: 'Pro',
+        pro720: 'Pro 720p',
+        pro4k: 'Pro 4K'
+      };
+      const planName = planNames[plan] || plan;
+
+      document.getElementById('planName').textContent = planName;
+      document.getElementById('pointsBalance').textContent = user.pointsBalance || 0;
+      document.getElementById('pointsUsed').textContent = user.pointsUsed || 0;
+      document.getElementById('videoCount').textContent = user.videoCount || 0;
+
+      const isPro = plan !== 'free';
+      const badgeContainer = document.getElementById('planBadgeContainer');
+      badgeContainer.innerHTML = `<span class="plan-badge ${isPro ? 'pro' : 'free'}"><i class="fa-solid fa-crown"></i> ${planName}</span>`;
+
+      if (plan === 'free') {
+        document.getElementById('planDesc').textContent = 'Essai gratuit de 3 jours';
+        document.getElementById('planPeriod').textContent = 'Votre essai gratuit est en cours.';
+        document.getElementById('upgradeSection').style.display = 'block';
+        document.getElementById('cancelSection').style.display = 'none';
+      } else {
+        document.getElementById('planDesc').textContent = '25$/mois — Renouvellement automatique';
+        const endDate = user.subscription?.currentPeriodEnd
+          ? new Date(user.subscription.currentPeriodEnd).toLocaleDateString('fr-FR')
+          : '—';
+        document.getElementById('planPeriod').textContent = `Prochain renouvellement : ${endDate}`;
+        document.getElementById('upgradeSection').style.display = 'none';
+        document.getElementById('cancelSection').style.display = 'block';
+      }
+
+      const features = [];
+      if (plan === 'free') {
+        features.push(
+          { text: '3 vidéos de test', active: true },
+          { text: 'Qualité 720p', active: true },
+          { text: 'Templates basiques', active: true },
+          { text: 'Voix IA', active: false },
+          { text: 'Export 4K', active: false },
+          { text: 'Support prioritaire', active: false }
+        );
+      } else if (plan === 'pro720') {
+        features.push(
+          { text: '500 points / mois', active: true },
+          { text: 'Qualité 720p HD', active: true },
+          { text: 'Tous les templates', active: true },
+          { text: 'Voix & avatars IA', active: true },
+          { text: 'Sous-titres 30+ langues', active: true },
+          { text: 'Export 4K', active: false }
+        );
+      } else {
+        features.push(
+          { text: '500 points / mois', active: true },
+          { text: 'Qualité 4K Ultra HD', active: true },
+          { text: 'Idéal séances fitness', active: true },
+          { text: 'Tous les templates premium', active: true },
+          { text: 'Voix & avatars IA', active: true },
+          { text: 'Sous-titres 30+ langues', active: true }
+        );
+      }
+
+      document.getElementById('planFeatures').innerHTML = features.map(f => `
+        <div class="plan-feature ${f.active ? '' : 'disabled'}">
+          <i class="fa-solid ${f.active ? 'fa-check' : 'fa-xmark'}"></i>
+          <span>${f.text}</span>
+        </div>
+      `).join('');
+    }
+
+    async function loadTransactions() {
+      try {
+        const data = await authAPI.pointsHistory();
+        const transactions = data.transactions || [];
+        const tbody = document.getElementById('transactionsBody');
+
+        if (transactions.length === 0) {
+          tbody.innerHTML = '<tr><td colspan="4" style="text-align:center; padding:32px; color:var(--text-muted);">Aucune transaction</td></tr>';
+          return;
+        }
+
+        tbody.innerHTML = transactions.map(t => {
+          const isCredit = t.type === 'credit' || t.amount > 0;
+          const date = new Date(t.createdAt).toLocaleDateString('fr-FR');
+          return `
+            <tr>
+              <td>${date}</td>
+              <td>${t.description || '—'}</td>
+              <td><span class="tx-type-badge ${isCredit ? 'credit' : 'debit'}">${isCredit ? 'Crédit' : 'Débit'}</span></td>
+              <td class="tx-amount ${isCredit ? 'positive' : 'negative'}">${isCredit ? '+' : ''}${t.amount} pts</td>
+            </tr>
+          `;
+        }).join('');
+      } catch (err) {
+        console.error('Transactions error:', err);
+      }
+    }
+
+    // Cancel subscription flow
+    document.getElementById('cancelBtn').addEventListener('click', () => {
+      document.getElementById('cancelModal').classList.add('active');
+    });
+    document.getElementById('keepSubBtn').addEventListener('click', () => {
+      document.getElementById('cancelModal').classList.remove('active');
+    });
+    document.getElementById('cancelModal').addEventListener('click', (e) => {
+      if (e.target === document.getElementById('cancelModal')) {
+        document.getElementById('cancelModal').classList.remove('active');
+      }
+    });
+    document.getElementById('confirmCancelBtn').addEventListener('click', async () => {
+      try {
+        document.getElementById('confirmCancelBtn').innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Traitement...';
+        await paymentAPI.cancel();
+        document.getElementById('cancelModal').classList.remove('active');
+        // Reload user data
+        const userData = await authAPI.me();
+        setUser(userData.user);
+        renderPlan(userData.user);
+        alert('Votre abonnement a été annulé. Vous conserverez l\'accès jusqu\'à la fin de la période en cours.');
+      } catch (err) {
+        console.error('Cancel error:', err);
+        alert('Erreur lors de l\'annulation : ' + (err.message || 'Veuillez réessayer'));
+      } finally {
+        document.getElementById('confirmCancelBtn').innerHTML = 'Confirmer l\'annulation';
+      }
+    });
+
+    document.getElementById('logoutBtn').addEventListener('click', logout);
+    const logoutBtnMobile = document.getElementById('logoutBtnMobile');
+    if (logoutBtnMobile) logoutBtnMobile.addEventListener('click', logout);
+  </script>
+  <script src="js/main.js"></script>
+</body>
+</html>
